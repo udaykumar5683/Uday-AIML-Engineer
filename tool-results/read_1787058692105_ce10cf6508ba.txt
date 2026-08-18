@@ -1,0 +1,1449 @@
+     1→<!DOCTYPE html>
+     2→<html lang="en">
+     3→<head>
+     4→<meta charset="UTF-8">
+     5→<meta name="viewport" content="width=device-width,initial-scale=1">
+     6→<title>Uday Kumar G — AI/ML Engineer</title>
+     7→<meta name="description" content="Portfolio of Uday Kumar G, AI/ML Engineer specializing in deep learning, multi-agent systems, and generative AI applications.">
+     8→<link rel="preconnect" href="https://fonts.googleapis.com">
+     9→<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    10→<link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700&display=swap" rel="stylesheet">
+    11→<style>
+    12→/* ── Reset & Base ── */
+    13→*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    14→:root{
+    15→  --background:#ffffff;
+    16→  --foreground:#111111;
+    17→  --ink:#0a0a0a;
+    18→  --muted:#8d8d8d;
+    19→  --subtle:#b6b6b6;
+    20→  --line:#e6e5e2;
+    21→  --surface:#f1f0ee;
+    22→  --surface-2:#e3e2df;
+    23→  --accent:#2dd4bf;
+    24→  --accent-from:#3ee0cc;
+    25→  --accent-to:#14b8a6;
+    26→  --hero-from:#ecebe9;
+    27→  --hero-to:#f1f0ee;
+    28→  --pill:9999px;
+    29→  --card:2rem;
+    30→  --card-sm:1.25rem;
+    31→  --control:.875rem;
+    32→  --shell:88rem;
+    33→  --ease-out-expo:cubic-bezier(.22,1,.36,1);
+    34→  --ease-out-quart:cubic-bezier(.165,.84,.44,1);
+    35→  --ease-spring:cubic-bezier(.2,.8,.2,1);
+    36→  --ease-line:cubic-bezier(.215,.61,.355,1);
+    37→}
+    38→@media(max-width:1920px){html{font-size:.833333vw}}
+    39→@media(max-width:1440px){html{font-size:1.111111vw}}
+    40→@media(max-width:1024px){html{font-size:1.5625vw}}
+    41→@media(max-width:640px){html{font-size:4.444444vw}}
+    42→html{scroll-behavior:auto;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+    43→body{
+    44→  font-family:'Onest',sans-serif;
+    45→  background:var(--background);
+    46→  color:var(--foreground);
+    47→  overflow-x:hidden;
+    48→  line-height:1.5;
+    49→}
+    50→a{color:inherit;text-decoration:none}
+    51→button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit}
+    52→ul,ol{list-style:none}
+    53→img{display:block;max-width:100%}
+    54→.skip-link{
+    55→  position:absolute;top:-100%;left:1rem;z-index:200;
+    56→  padding:.75rem 1.25rem;background:var(--ink);color:#fff;
+    57→  border-radius:var(--control);font-weight:600;font-size:.875rem;
+    58→  transition:top .2s;
+    59→}
+    60→.skip-link:focus{top:1rem}
+    61→.shell{width:100%;max-width:var(--shell);margin:0 auto;padding:0 2rem}
+    62→@media(max-width:640px){.shell{padding:0 1.25rem}}
+    63→
+    64→/* ── Focus Visible ── */
+    65→:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:4px}
+    66→
+    67→/* ── Reduced Motion ── */
+    68→@media(prefers-reduced-motion:reduce){
+    69→  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+    70→  .line-reveal-inner,.word-reveal-word{opacity:1!important;transform:none!important}
+    71→}
+    72→
+    73→/* ═══════════════════════════════════════════
+    74→   PAGE LOADER
+    75→   ═══════════════════════════════════════════ */
+    76→.page-loader{
+    77→  position:fixed;inset:0;z-index:120;
+    78→  background:#0a0a0a;
+    79→  border-radius:0 0 2rem 2rem;
+    80→  display:flex;flex-direction:column;align-items:center;justify-content:center;
+    81→  transition:transform .7s var(--ease-out-expo),opacity .5s ease;
+    82→  will-change:transform;
+    83→}
+    84→.page-loader.exit{transform:translateY(-100%);opacity:0}
+    85→.loader-brand{display:flex;align-items:center;gap:.75rem;margin-bottom:1rem}
+    86→.loader-logo{
+    87→  width:3rem;height:3rem;border-radius:.75rem;
+    88→  background:var(--accent);
+    89→  display:flex;align-items:center;justify-content:center;
+    90→  font-weight:700;font-size:1.125rem;color:#0a0a0a;
+    91→}
+    92→.loader-name{color:#fff;font-weight:600;font-size:1.5rem;letter-spacing:-.01em}
+    93→.loader-tagline{color:rgba(255,255,255,.55);font-size:.875rem;margin-bottom:3rem}
+    94→.loader-progress-track{
+    95→  width:min(24rem,70vw);height:1px;
+    96→  background:rgba(255,255,255,.15);
+    97→  position:relative;margin-bottom:1.25rem;
+    98→}
+    99→.loader-progress-fill{
+   100→  position:absolute;left:0;top:0;height:100%;width:0%;
+   101→  background:var(--accent);
+   102→  transition:width 1.3s cubic-bezier(.65,0,.35,1);
+   103→}
+   104→.loader-progress-fill.go{width:100%}
+   105→.loader-bottom{display:flex;justify-content:space-between;width:min(24rem,70vw)}
+   106→.loader-label{color:rgba(255,255,255,.35);font-size:.75rem;font-weight:500;text-transform:uppercase;letter-spacing:.08em}
+   107→.loader-counter{color:rgba(255,255,255,.6);font-size:.75rem;font-weight:600;font-variant-numeric:tabular-nums;letter-spacing:.05em}
+   108→
+   109→/* ═══════════════════════════════════════════
+   110→   HEADER
+   111→   ═══════════════════════════════════════════ */
+   112→.site-header{
+   113→  position:fixed;top:0;left:0;right:0;z-index:50;
+   114→  padding:1.25rem 0;
+   115→  opacity:0;transform:translateY(-14px);
+   116→  transition:opacity .5s var(--ease-out-expo),transform .5s var(--ease-out-expo);
+   117→}
+   118→.site-header.visible{opacity:1;transform:translateY(0)}
+   119→.header-inner{
+   120→  display:flex;align-items:center;justify-content:space-between;
+   121→}
+   122→.header-brand{display:flex;align-items:center;gap:.5rem;font-weight:600;font-size:1.125rem}
+   123→.header-brand-mark{
+   124→  width:1.75rem;height:1.75rem;border-radius:.5rem;
+   125→  background:var(--accent);display:flex;align-items:center;justify-content:center;
+   126→  font-weight:700;font-size:.75rem;color:#0a0a0a;
+   127→}
+   128→.header-nav{display:flex;gap:2rem}
+   129→.header-nav a{
+   130→  font-size:.875rem;font-weight:500;color:var(--muted);
+   131→  transition:color .35s var(--ease-spring);
+   132→  position:relative;
+   133→}
+   134→.header-nav a::after{
+   135→  content:'';position:absolute;bottom:-4px;left:0;width:0;height:2px;
+   136→  background:var(--accent);border-radius:1px;
+   137→  transition:width .35s var(--ease-spring);
+   138→}
+   139→.header-nav a:hover{color:var(--foreground)}
+   140→.header-nav a:hover::after{width:100%}
+   141→@media(max-width:1024px){.header-nav{display:none}}
+   142→.header-right{display:flex;align-items:center;gap:.75rem}
+   143→.clock-chip{
+   144→  display:flex;align-items:center;gap:.5rem;
+   145→  padding:.4rem .85rem;
+   146→  border:1px solid var(--line);border-radius:var(--pill);
+   147→  backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+   148→  background:rgba(255,255,255,.7);
+   149→  font-size:.75rem;font-weight:500;color:var(--muted);
+   150→}
+   151→.clock-chip .clock-time{color:var(--foreground);font-variant-numeric:tabular-nums;font-weight:600}
+   152→@media(max-width:768px){.clock-chip{display:none}}
+   153→.menu-btn{
+   154→  width:2.5rem;height:2.5rem;border-radius:var(--control);
+   155→  background:var(--surface);display:flex;align-items:center;justify-content:center;
+   156→  transition:background .35s var(--ease-spring);
+   157→}
+   158→.menu-btn:hover{background:var(--surface-2)}
+   159→.menu-btn svg{width:1.25rem;height:1.25rem}
+   160→
+   161→/* ═══════════════════════════════════════════
+   162→   HERO
+   163→   ═══════════════════════════════════════════ */
+   164→.hero{
+   165→  position:relative;overflow:hidden;border-radius:0 0 var(--card) var(--card);
+   166→  background:var(--hero-to);min-height:100vh;
+   167→  display:flex;align-items:flex-end;
+   168→  padding-bottom:3rem;
+   169→}
+   170→.hero-bg{
+   171→  position:absolute;inset:0;z-index:1;
+   172→}
+   173→.hero-bg img{
+   174→  width:100%;height:100%;object-fit:cover;
+   175→}
+   176→.hero-bg-overlay{
+   177→  position:absolute;inset:0;background:rgba(0,0,0,.4);z-index:2;
+   178→}
+   179→.hero-content{position:relative;z-index:20;padding-top:7rem}
+   180→.hero-grid{
+   181→  display:grid;grid-template-columns:1fr;gap:2.5rem;
+   182→}
+   183→@media(min-width:1024px){
+   184→  .hero-grid{grid-template-columns:7fr 5fr;gap:3rem;align-items:end}
+   185→}
+   186→.hero-eyebrow{
+   187→  display:inline-flex;align-items:center;gap:.5rem;
+   188→  font-size:.8125rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em;
+   189→  color:rgba(255,255,255,.75);margin-bottom:1.5rem;
+   190→  opacity:0;transform:translateY(16px);
+   191→  transition:opacity .7s var(--ease-out-quart),transform .7s var(--ease-out-quart);
+   192→}
+   193→.hero-eyebrow.visible{opacity:1;transform:translateY(0)}
+   194→.hero-eyebrow-dot{
+   195→  width:.5rem;height:.5rem;border-radius:50%;background:var(--accent);
+   196→}
+   197→.hero-h1{
+   198→  font-size:2.25rem;font-weight:600;line-height:.98;
+   199→  letter-spacing:-.02em;color:#fff;max-width:18ch;
+   200→  margin-bottom:1.75rem;
+   201→}
+   202→@media(min-width:640px){.hero-h1{font-size:3rem}}
+   203→@media(min-width:768px){.hero-h1{font-size:3.75rem}}
+   204→.hero-h1 .line-reveal{display:block;overflow:hidden;position:relative}
+   205→.hero-h1 .line-reveal-inner{
+   206→  display:block;transform:translateY(100%);opacity:0;
+   207→  transition:transform .9s var(--ease-line),opacity .9s var(--ease-line);
+   208→}
+   209→.hero-h1 .line-reveal-inner.visible{transform:translateY(0);opacity:1}
+   210→.hero-meta{
+   211→  display:flex;align-items:center;gap:.625rem;flex-wrap:wrap;
+   212→  font-size:.8125rem;font-weight:500;color:rgba(255,255,255,.7);
+   213→  margin-bottom:2rem;
+   214→  opacity:0;transform:translateY(12px);
+   215→  transition:opacity .7s var(--ease-out-quart) .5s,transform .7s var(--ease-out-quart) .5s;
+   216→}
+   217→.hero-meta.visible{opacity:1;transform:translateY(0)}
+   218→.hero-meta-dot{width:.375rem;height:.375rem;border-radius:50%;background:var(--accent)}
+   219→.hero-cta{display:flex;gap:.75rem;flex-wrap:wrap;
+   220→  opacity:0;transform:translateY(12px);
+   221→  transition:opacity .7s var(--ease-out-quart) .6s,transform .7s var(--ease-out-quart) .6s;
+   222→}
+   223→.hero-cta.visible{opacity:1;transform:translateY(0)}
+   224→.btn{
+   225→  display:inline-flex;align-items:center;gap:.5rem;
+   226→  padding:.7rem 1.5rem;border-radius:var(--pill);
+   227→  font-size:.875rem;font-weight:600;
+   228→  transition:transform .35s var(--ease-spring),box-shadow .35s var(--ease-spring),background .35s var(--ease-spring);
+   229→}
+   230→.btn:hover{transform:translateY(-2px)}
+   231→.btn-dark{background:var(--ink);color:#fff}
+   232→.btn-dark:hover{box-shadow:0 8px 24px rgba(0,0,0,.25)}
+   233→.btn-outline{border:1px solid rgba(255,255,255,.3);color:#fff}
+   234→.btn-outline:hover{border-color:rgba(255,255,255,.6);background:rgba(255,255,255,.08)}
+   235→.btn-light{background:#fff;color:var(--ink)}
+   236→.btn-light:hover{box-shadow:0 8px 24px rgba(0,0,0,.12)}
+   237→.btn-ghost{background:var(--surface);color:var(--foreground)}
+   238→.btn-ghost:hover{background:var(--surface-2)}
+   239→.btn svg{width:1rem;height:1rem;transition:transform .35s var(--ease-spring)}
+   240→.btn:hover svg{transform:translateX(3px)}
+   241→
+   242→/* Hero right */
+   243→.hero-right{display:flex;flex-direction:column;align-items:flex-end;gap:1.25rem}
+   244→@media(max-width:1023px){.hero-right{display:none}}
+   245→.hero-image-card{
+   246→  border-radius:var(--card-sm);padding:.5rem;
+   247→  background:rgba(255,255,255,.12);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
+   248→  box-shadow:0 16px 48px rgba(0,0,0,.2);
+   249→  max-width:19rem;
+   250→  opacity:0;transform:translateY(24px);
+   251→  transition:opacity .8s var(--ease-out-quart) .3s,transform .8s var(--ease-out-quart) .3s;
+   252→}
+   253→.hero-image-card.visible{opacity:1;transform:translateY(0)}
+   254→.hero-image-card img{
+   255→  width:100%;aspect-ratio:3/4;object-fit:cover;border-radius:.875rem;
+   256→}
+   257→.hero-chips{display:flex;flex-direction:column;gap:.5rem;align-items:flex-end;
+   258→  opacity:0;transform:translateY(16px);
+   259→  transition:opacity .7s var(--ease-out-quart) .5s,transform .7s var(--ease-out-quart) .5s;
+   260→}
+   261→.hero-chips.visible{opacity:1;transform:translateY(0)}
+   262→.hero-chip{
+   263→  display:flex;align-items:center;gap:.5rem;
+   264→  padding:.4rem .85rem;border-radius:var(--pill);
+   265→  background:rgba(255,255,255,.12);backdrop-filter:blur(12px);
+   266→  font-size:.75rem;font-weight:500;color:rgba(255,255,255,.8);
+   267→}
+   268→.hero-chip svg{width:.875rem;height:.875rem;opacity:.7}
+   269→
+   270→/* Hero status bar */
+   271→.hero-status{
+   272→  position:relative;z-index:20;margin-top:2.5rem;
+   273→  display:flex;align-items:center;gap:1.5rem;flex-wrap:wrap;
+   274→  font-size:.75rem;font-weight:500;color:rgba(255,255,255,.5);
+   275→  padding-top:1.5rem;border-top:1px solid rgba(255,255,255,.1);
+   276→  opacity:0;transform:translateY(10px);
+   277→  transition:opacity .7s var(--ease-out-quart) .8s,transform .7s var(--ease-out-quart) .8s;
+   278→}
+   279→.hero-status.visible{opacity:1;transform:translateY(0)}
+   280→.hero-status span{display:flex;align-items:center;gap:.375rem}
+   281→.hero-status .dot{width:.3rem;height:.3rem;border-radius:50%;background:var(--accent)}
+   282→
+   283→/* Hero watermark */
+   284→.hero-watermark{
+   285→  position:absolute;bottom:-1rem;right:2rem;z-index:10;
+   286→  font-size:13rem;font-weight:700;color:rgba(255,255,255,.06);
+   287→  pointer-events:none;line-height:1;letter-spacing:-.04em;
+   288→  user-select:none;
+   289→}
+   290→
+   291→/* ═══════════════════════════════════════════
+   292→   SECTIONS COMMON
+   293→   ═══════════════════════════════════════════ */
+   294→.section{padding:6rem 0}
+   295→@media(max-width:640px){.section{padding:4rem 0}}
+   296→.eyebrow{
+   297→  display:inline-flex;align-items:center;gap:.5rem;
+   298→  font-size:.75rem;font-weight:600;text-transform:uppercase;
+   299→  letter-spacing:.1em;color:var(--muted);margin-bottom:1rem;
+   300→}
+   301→.eyebrow-dot{width:.375rem;height:.375rem;border-radius:50%;background:var(--accent)}
+   302→.h2{
+   303→  font-size:2.25rem;font-weight:600;line-height:1.05;letter-spacing:-.025em;
+   304→  margin-bottom:2.5rem;
+   305→}
+   306→@media(min-width:768px){.h2{font-size:3rem}}
+   307→@media(min-width:1024px){.h2{font-size:3.5rem}}
+   308→.h2 .line-reveal{display:block;overflow:hidden}
+   309→.h2 .line-reveal-inner{
+   310→  display:block;transform:translateY(100%);opacity:0;
+   311→  transition:transform .9s var(--ease-line),opacity .9s var(--ease-line);
+   312→}
+   313→.h2 .line-reveal-inner.visible{transform:translateY(0);opacity:1}
+   314→
+   315→/* Word reveal */
+   316→.word-reveal{overflow:hidden;display:inline}
+   317→.word-reveal-word{
+   318→  display:inline-block;transform:translateY(24px);opacity:0;
+   319→  transition:transform .7s var(--ease-out-quart),opacity .7s var(--ease-out-quart);
+   320→}
+   321→.word-reveal-word.visible{transform:translateY(0);opacity:1}
+   322→
+   323→/* ═══════════════════════════════════════════
+   324→   ABOUT / SKILLS
+   325→   ═══════════════════════════════════════════ */
+   326→.about-grid{display:grid;grid-template-columns:1fr;gap:3rem}
+   327→@media(min-width:1024px){.about-grid{grid-template-columns:5fr 7fr;gap:4rem}}
+   328→.about-left{display:flex;flex-direction:column;justify-content:center}
+   329→.about-deco{
+   330→  width:5rem;height:5rem;margin-bottom:2rem;
+   331→  color:var(--accent);opacity:.6;
+   332→}
+   333→.about-right{display:flex;flex-direction:column;justify-content:center}
+   334→.about-text{font-size:1.25rem;font-weight:500;line-height:1.5;color:var(--foreground);margin-bottom:3rem}
+   335→@media(min-width:768px){.about-text{font-size:1.5rem}}
+   336→.about-text .muted-text{color:var(--muted)}
+   337→.skills-grid{display:flex;flex-direction:column;gap:1.5rem}
+   338→.skill-category-label{font-size:.6875rem;font-weight:600;text-transform:uppercase;letter-spacing:.1em;color:var(--subtle);margin-bottom:.625rem}
+   339→.skill-chips{display:flex;flex-wrap:wrap;gap:.5rem}
+   340→.skill-chip{
+   341→  padding:.4rem .85rem;border-radius:var(--pill);
+   342→  background:var(--surface);font-size:.8125rem;font-weight:500;
+   343→  color:var(--foreground);transition:background .35s var(--ease-spring),transform .35s var(--ease-spring);
+   344→}
+   345→.skill-chip:hover{background:var(--surface-2);transform:translateY(-2px)}
+   346→
+   347→/* ═══════════════════════════════════════════
+   348→   CREATE BAND
+   349→   ═══════════════════════════════════════════ */
+   350→.create-band{
+   351→  padding:3rem 0;overflow:hidden;
+   352→}
+   353→.create-pills{display:flex;align-items:center;gap:.75rem;flex-wrap:wrap;justify-content:center}
+   354→.create-pill{
+   355→  padding:.625rem 1.5rem;border-radius:var(--pill);
+   356→  font-size:1rem;font-weight:600;white-space:nowrap;
+   357→  transition:transform .35s var(--ease-spring);
+   358→}
+   359→.create-pill:hover{transform:translateY(-3px)}
+   360→.create-pill-light{background:var(--surface);color:var(--foreground)}
+   361→.create-pill-accent{background:linear-gradient(135deg,var(--accent-from),var(--accent-to));color:#0a0a0a}
+   362→.create-pill-dark{background:var(--ink);color:#fff;display:flex;align-items:center;gap:.5rem}
+   363→.create-pill-ghost{border:1px solid var(--line);color:var(--muted)}
+   364→
+   365→/* ═══════════════════════════════════════════
+   366→   PROJECTS
+   367→   ═══════════════════════════════════════════ */
+   368→.projects-eyebrow{display:flex;justify-content:center;margin-bottom:1rem}
+   369→.projects-h2{text-align:center}
+   370→.projects-grid{display:grid;grid-template-columns:1fr;gap:1.5rem;margin-top:3rem}
+   371→@media(min-width:768px){.projects-grid{grid-template-columns:repeat(3,1fr)}}
+   372→.project-card{
+   373→  background:var(--ink);color:#fff;border-radius:var(--card);
+   374→  padding:2rem;position:relative;overflow:hidden;
+   375→  display:flex;flex-direction:column;min-height:24rem;
+   376→  transition:transform .45s var(--ease-spring),box-shadow .45s var(--ease-spring);
+   377→}
+   378→.project-card:hover{transform:translateY(-8px) scale(1.012);box-shadow:0 24px 64px rgba(0,0,0,.25)}
+   379→.project-card-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:auto}
+   380→.project-card-category{font-size:.6875rem;font-weight:600;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,.4)}
+   381→.project-card-year{font-size:.75rem;font-weight:500;color:rgba(255,255,255,.3)}
+   382→.project-card-watermark{
+   383→  position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+   384→  font-size:6rem;font-weight:700;color:rgba(255,255,255,.04);
+   385→  pointer-events:none;user-select:none;line-height:1;
+   386→}
+   387→.project-card-arrow{
+   388→  width:2.5rem;height:2.5rem;border-radius:50%;
+   389→  background:rgba(255,255,255,.1);
+   390→  display:flex;align-items:center;justify-content:center;
+   391→  opacity:0;transform:scale(.8);
+   392→  transition:opacity .35s var(--ease-spring),transform .35s var(--ease-spring),background .35s var(--ease-spring);
+   393→}
+   394→.project-card:hover .project-card-arrow{opacity:1;transform:scale(1);background:var(--accent)}
+   395→.project-card-arrow svg{width:1rem;height:1rem;color:var(--ink)}
+   396→.project-card-body{position:relative;z-index:2}
+   397→.project-card-title{font-size:1.25rem;font-weight:600;margin-bottom:.75rem;line-height:1.2}
+   398→@media(min-width:768px){.project-card-title{font-size:1.375rem}}
+   399→.project-card-desc{font-size:.875rem;color:rgba(255,255,255,.55);line-height:1.6;margin-bottom:1.25rem}
+   400→.project-card-tech{font-size:.75rem;font-weight:500;color:var(--accent);margin-bottom:1rem}
+   401→.project-card-tags{display:flex;flex-wrap:wrap;gap:.375rem}
+   402→.project-tag{
+   403→  padding:.25rem .625rem;border-radius:var(--pill);
+   404→  background:rgba(255,255,255,.08);font-size:.6875rem;font-weight:500;color:rgba(255,255,255,.6);
+   405→}
+   406→
+   407→/* ═══════════════════════════════════════════
+   408→   EXPERIENCE
+   409→   ═══════════════════════════════════════════ */
+   410→.exp-rows{display:flex;flex-direction:column}
+   411→.exp-row{
+   412→  border-top:1px solid var(--line);padding:2rem 0;
+   413→  position:relative;overflow:hidden;
+   414→  cursor:default;
+   415→}
+   416→.exp-row:first-child{border-top:none}
+   417→.exp-row-fill{
+   418→  position:absolute;inset:0;background:var(--surface);
+   419→  transform:scaleY(0);transform-origin:bottom;
+   420→  transition:transform .5s var(--ease-spring);
+   421→  z-index:0;
+   422→}
+   423→.exp-row:hover .exp-row-fill{transform:scaleY(1)}
+   424→.exp-row-inner{position:relative;z-index:1}
+   425→@media(min-width:768px){
+   426→  .exp-row-top{display:flex;justify-content:space-between;align-items:flex-start;gap:2rem}
+   427→}
+   428→.exp-row-role{font-size:1.25rem;font-weight:600;margin-bottom:.25rem}
+   429→@media(min-width:768px){.exp-row-role{font-size:1.5rem}}
+   430→.exp-row-company{font-size:.875rem;color:var(--muted);margin-bottom:.25rem}
+   431→.exp-row-meta{font-size:.75rem;color:var(--subtle);margin-bottom:.75rem}
+   432→.exp-row-desc{font-size:.9375rem;color:var(--muted);line-height:1.6;max-width:40rem}
+   433→
+   434→/* ═══════════════════════════════════════════
+   435→   EDUCATION
+   436→   ═══════════════════════════════════════════ */
+   437→.edu-grid{display:grid;grid-template-columns:1fr;gap:1.25rem}
+   438→@media(min-width:768px){.edu-grid{grid-template-columns:repeat(3,1fr)}}
+   439→.edu-card{
+   440→  border:1px solid var(--line);border-radius:var(--card-sm);
+   441→  padding:1.75rem;display:flex;flex-direction:column;
+   442→  transition:transform .35s var(--ease-spring),border-color .35s var(--ease-spring),box-shadow .35s var(--ease-spring);
+   443→}
+   444→.edu-card:hover{transform:translateY(-4px);border-color:var(--surface-2);box-shadow:0 8px 24px rgba(0,0,0,.06)}
+   445→.edu-card-year{font-size:.6875rem;font-weight:600;text-transform:uppercase;letter-spacing:.1em;color:var(--accent);margin-bottom:.75rem}
+   446→.edu-card-degree{font-size:1.125rem;font-weight:600;margin-bottom:.25rem;line-height:1.3}
+   447→.edu-card-school{font-size:.875rem;color:var(--muted);margin-bottom:auto;padding-bottom:1rem}
+   448→.edu-card-score{font-size:1.5rem;font-weight:700;color:var(--foreground)}
+   449→.edu-card-score span{font-size:.875rem;font-weight:500;color:var(--muted)}
+   450→
+   451→/* ═══════════════════════════════════════════
+   452→   CERTIFICATES
+   453→   ═══════════════════════════════════════════ */
+   454→.certs-grid{display:grid;grid-template-columns:1fr;gap:1rem}
+   455→@media(min-width:640px){.certs-grid{grid-template-columns:repeat(2,1fr)}}
+   456→@media(min-width:1024px){.certs-grid{grid-template-columns:repeat(5,1fr)}}
+   457→.cert-card{
+   458→  border:1px solid var(--line);border-radius:var(--card-sm);
+   459→  padding:1.5rem;display:flex;flex-direction:column;justify-content:space-between;
+   460→  transition:transform .35s var(--ease-spring),border-color .35s var(--ease-spring);
+   461→  min-height:8rem;
+   462→}
+   463→.cert-card:hover{transform:translateY(-3px);border-color:var(--surface-2)}
+   464→.cert-card-issuer{font-size:.6875rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:var(--accent);margin-bottom:.75rem}
+   465→.cert-card-name{font-size:.9375rem;font-weight:600;line-height:1.35}
+   466→
+   467→/* ═══════════════════════════════════════════
+   468→   STATS
+   469→   ═══════════════════════════════════════════ */
+   470→.stats-panel{
+   471→  background:var(--ink);color:#fff;border-radius:var(--card);
+   472→  padding:4rem 2rem;
+   473→}
+   474→.stats-eyebrow .eyebrow{color:rgba(255,255,255,.35)}
+   475→.stats-eyebrow .eyebrow-dot{background:var(--accent)}
+   476→.stats-h2 .h2{color:#fff}
+   477→.stats-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:2.5rem;margin-top:3rem}
+   478→@media(min-width:768px){.stats-grid{grid-template-columns:repeat(4,1fr)}}
+   479→.stat-item{text-align:center}
+   480→.stat-number{font-size:3rem;font-weight:700;line-height:1;margin-bottom:.5rem;color:var(--accent);font-variant-numeric:tabular-nums}
+   481→@media(min-width:768px){.stat-number{font-size:3.75rem}}
+   482→.stat-label{font-size:.875rem;font-weight:500;color:rgba(255,255,255,.5)}
+   483→
+   484→/* ═══════════════════════════════════════════
+   485→   FOOTER
+   486→   ═══════════════════════════════════════════ */
+   487→.site-footer{
+   488→  background:var(--ink);color:#fff;
+   489→  border-radius:var(--card) var(--card) 0 0;
+   490→  padding:5rem 0 2rem;position:relative;overflow:hidden;
+   491→}
+   492→.footer-cta{text-align:center;margin-bottom:4rem}
+   493→.footer-cta .h2{color:#fff;max-width:30ch;margin-left:auto;margin-right:auto}
+   494→.footer-cols{display:grid;grid-template-columns:1fr;gap:3rem;margin-bottom:3rem}
+   495→@media(min-width:768px){.footer-cols{grid-template-columns:2fr 1fr 1fr 1fr;gap:2rem}}
+   496→@media(max-width:767px){.footer-cols{grid-template-columns:1fr 1fr}}
+   497→.footer-brand-name{font-weight:600;font-size:1.125rem;margin-bottom:.5rem}
+   498→.footer-brand-tagline{font-size:.8125rem;color:rgba(255,255,255,.45);line-height:1.5;max-width:16rem}
+   499→.footer-col-title{font-size:.6875rem;font-weight:600;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,.3);margin-bottom:1rem}
+   500→.footer-col a{display:block;font-size:.875rem;color:rgba(255,255,255,.6);padding:.25rem 0;transition:color .35s var(--ease-spring)}
+   501→.footer-col a:hover{color:#fff}
+   502→.footer-legal{
+   503→  display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;
+   504→  padding-top:2rem;border-top:1px solid rgba(255,255,255,.08);
+   505→  font-size:.75rem;color:rgba(255,255,255,.3);
+   506→}
+   507→.footer-legal a{color:rgba(255,255,255,.5);transition:color .35s var(--ease-spring)}
+   508→.footer-legal a:hover{color:#fff}
+   509→.footer-watermark{
+   510→  position:absolute;bottom:-2rem;right:2rem;
+   511→  font-size:13rem;font-weight:700;color:rgba(255,255,255,.03);
+   512→  pointer-events:none;user-select:none;line-height:1;letter-spacing:-.04em;
+   513→}
+   514→
+   515→/* ═══════════════════════════════════════════
+   516→   NAV MENU OVERLAY
+   517→   ═══════════════════════════════════════════ */
+   518→.nav-overlay{
+   519→  position:fixed;inset:0;z-index:115;background:#0a0a0a;color:#fff;
+   520→  display:flex;flex-direction:column;
+   521→  opacity:0;pointer-events:none;
+   522→  transition:opacity .4s ease;
+   523→}
+   524→.nav-overlay.open{opacity:1;pointer-events:auto}
+   525→.nav-overlay-top{display:flex;justify-content:space-between;align-items:center;padding:1.5rem 2rem}
+   526→.nav-overlay-brand{font-weight:600;font-size:1.125rem}
+   527→.nav-overlay-close{
+   528→  width:2.5rem;height:2.5rem;border-radius:var(--control);
+   529→  background:rgba(255,255,255,.1);display:flex;align-items:center;justify-content:center;
+   530→  transition:background .35s var(--ease-spring);
+   531→}
+   532→.nav-overlay-close:hover{background:rgba(255,255,255,.2)}
+   533→.nav-overlay-close svg{width:1.25rem;height:1.25rem}
+   534→.nav-overlay-links{flex:1;display:flex;align-items:center;justify-content:center}
+   535→.nav-overlay-links ul{display:flex;flex-direction:column;align-items:center;gap:1.5rem}
+   536→.nav-overlay-links a{
+   537→  font-size:2.5rem;font-weight:600;color:rgba(255,255,255,.5);
+   538→  transition:color .35s var(--ease-spring),transform .35s var(--ease-spring);
+   539→  opacity:0;transform:translateY(20px);
+   540→}
+   541→.nav-overlay.open .nav-overlay-links a{
+   542→  opacity:1;transform:translateY(0);
+   543→  transition:opacity .5s var(--ease-out-quart),transform .5s var(--ease-out-quart),color .35s var(--ease-spring);
+   544→}
+   545→.nav-overlay-links a:hover{color:#fff;transform:translateY(-3px)}
+   546→.nav-overlay-bottom{display:flex;justify-content:space-between;align-items:center;padding:1.5rem 2rem}
+   547→.nav-overlay-time{font-size:.8125rem;color:rgba(255,255,255,.35)}
+   548→.nav-overlay-cta{font-size:.875rem;font-weight:600;color:var(--accent);display:flex;align-items:center;gap:.5rem;transition:gap .35s var(--ease-spring)}
+   549→.nav-overlay-cta:hover{gap:.75rem}
+   550→
+   551→/* ═══════════════════════════════════════════
+   552→   CONTACT MODAL
+   553→   ═══════════════════════════════════════════ */
+   554→.modal-backdrop{
+   555→  position:fixed;inset:0;z-index:130;background:rgba(0,0,0,.5);
+   556→  backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
+   557→  display:flex;align-items:center;justify-content:center;padding:2rem;
+   558→  opacity:0;pointer-events:none;transition:opacity .3s ease;
+   559→}
+   560→.modal-backdrop.open{opacity:1;pointer-events:auto}
+   561→.modal-panel{
+   562→  background:#fff;border-radius:var(--card);padding:3rem;
+   563→  max-width:28rem;width:100%;position:relative;
+   564→  transform:translateY(20px) scale(.97);
+   565→  transition:transform .4s var(--ease-out-expo);
+   566→}
+   567→.modal-backdrop.open .modal-panel{transform:translateY(0) scale(1)}
+   568→.modal-close{
+   569→  position:absolute;top:1.25rem;right:1.25rem;
+   570→  width:2rem;height:2rem;border-radius:50%;
+   571→  background:var(--surface);display:flex;align-items:center;justify-content:center;
+   572→  transition:background .35s var(--ease-spring);
+   573→}
+   574→.modal-close:hover{background:var(--surface-2)}
+   575→.modal-close svg{width:.875rem;height:.875rem}
+   576→.modal-title{font-size:1.5rem;font-weight:600;margin-bottom:.5rem}
+   577→.modal-subtitle{font-size:.875rem;color:var(--muted);margin-bottom:2rem}
+   578→.form-group{margin-bottom:1.25rem}
+   579→.form-label{display:block;font-size:.75rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin-bottom:.5rem}
+   580→.form-input,.form-textarea{
+   581→  width:100%;padding:.75rem 1rem;border:1px solid var(--line);
+   582→  border-radius:var(--control);font-family:inherit;font-size:.9375rem;
+   583→  background:var(--background);color:var(--foreground);
+   584→  transition:border-color .35s var(--ease-spring),box-shadow .35s var(--ease-spring);
+   585→}
+   586→.form-input:focus,.form-textarea:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px rgba(45,212,191,.15)}
+   587→.form-textarea{resize:vertical;min-height:6rem}
+   588→.form-submit{
+   589→  width:100%;margin-top:.5rem;
+   590→}
+   591→.modal-success{
+   592→  text-align:center;padding:2rem 0;
+   593→}
+   594→.modal-success-icon{
+   595→  width:3.5rem;height:3.5rem;border-radius:50%;background:rgba(45,212,191,.1);
+   596→  display:flex;align-items:center;justify-content:center;margin:0 auto 1.25rem;
+   597→  color:var(--accent);
+   598→}
+   599→.modal-success-icon svg{width:1.5rem;height:1.5rem}
+   600→.modal-success h3{font-size:1.25rem;font-weight:600;margin-bottom:.5rem}
+   601→.modal-success p{font-size:.875rem;color:var(--muted)}
+   602→.modal-reply-note{font-size:.75rem;color:var(--subtle);text-align:center;margin-top:1.25rem}
+   603→.hidden{display:none!important}
+   604→
+   605→/* ═══════════════════════════════════════════
+   606→   SCROLL REVEAL UTILITY
+   607→   ═══════════════════════════════════════════ */
+   608→.reveal{opacity:0;transform:translateY(24px);transition:opacity .7s var(--ease-out-quart),transform .7s var(--ease-out-quart)}
+   609→.reveal.visible{opacity:1;transform:translateY(0)}
+   610→</style>
+   611→</head>
+   612→<body>
+   613→<a href="#main" class="skip-link">Skip to content</a>
+   614→
+   615→<!-- ═══════ PAGE LOADER ═══════ -->
+   616→<div class="page-loader" id="pageLoader" role="status" aria-label="Loading">
+   617→  <div class="loader-brand">
+   618→    <div class="loader-logo">UK</div>
+   619→    <span class="loader-name">Uday Kumar G</span>
+   620→  </div>
+   621→  <p class="loader-tagline">AI/ML Engineer — turning ideas into intelligent systems</p>
+   622→  <div class="loader-progress-track">
+   623→    <div class="loader-progress-fill" id="loaderFill"></div>
+   624→  </div>
+   625→  <div class="loader-bottom">
+   626→    <span class="loader-label">Loading</span>
+   627→    <span class="loader-counter" id="loaderCounter">000</span>
+   628→  </div>
+   629→</div>
+   630→
+   631→<!-- ═══════ HEADER ═══════ -->
+   632→<header class="site-header" id="siteHeader">
+   633→  <div class="shell">
+   634→    <div class="header-inner">
+   635→      <a href="#home" class="header-brand" aria-label="Scroll to top">
+   636→        <span class="header-brand-mark">UK</span>
+   637→        Uday Kumar G
+   638→      </a>
+   639→      <nav class="header-nav" aria-label="Primary navigation">
+   640→        <a href="#about">About</a>
+   641→        <a href="#skills">Skills</a>
+   642→        <a href="#projects">Projects</a>
+   643→        <a href="#experience">Experience</a>
+   644→        <a href="#education">Education</a>
+   645→        <a href="#contact">Contact</a>
+   646→      </nav>
+   647→      <div class="header-right">
+   648→        <div class="clock-chip" aria-live="polite">
+   649→          <span class="clock-time" id="clockTime">--:--</span>
+   650→          <span id="clockDate">---</span>
+   651→        </div>
+   652→        <button class="menu-btn" id="menuBtn" aria-label="Open navigation menu" aria-expanded="false">
+   653→          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="4" y1="7" x2="20" y2="7"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="17" x2="20" y2="17"/></svg>
+   654→        </button>
+   655→      </div>
+   656→    </div>
+   657→  </div>
+   658→</header>
+   659→
+   660→<!-- ═══════ NAV OVERLAY ═══════ -->
+   661→<div class="nav-overlay" id="navOverlay" role="dialog" aria-modal="true" aria-label="Navigation menu" inert>
+   662→  <div class="nav-overlay-top">
+   663→    <span class="nav-overlay-brand">Uday Kumar G</span>
+   664→    <button class="nav-overlay-close" id="navClose" aria-label="Close navigation menu">
+   665→      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+   666→    </button>
+   667→  </div>
+   668→  <nav class="nav-overlay-links">
+   669→    <ul>
+   670→      <li><a href="#about" class="nav-link" style="transition-delay:80ms">About</a></li>
+   671→      <li><a href="#skills" class="nav-link" style="transition-delay:125ms">Skills</a></li>
+   672→      <li><a href="#projects" class="nav-link" style="transition-delay:170ms">Projects</a></li>
+   673→      <li><a href="#experience" class="nav-link" style="transition-delay:215ms">Experience</a></li>
+   674→      <li><a href="#education" class="nav-link" style="transition-delay:260ms">Education</a></li>
+   675→      <li><a href="#contact" class="nav-link" style="transition-delay:305ms">Contact</a></li>
+   676→    </ul>
+   677→  </nav>
+   678→  <div class="nav-overlay-bottom">
+   679→    <span class="nav-overlay-time" id="navTime">--</span>
+   680→    <a href="#contact" class="nav-overlay-cta" id="navCtaBtn">
+   681→      Get in Touch
+   682→      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+   683→    </a>
+   684→  </div>
+   685→</div>
+   686→
+   687→<!-- ═══════ CONTACT MODAL ═══════ -->
+   688→<div class="modal-backdrop" id="contactModal" role="dialog" aria-modal="true" aria-label="Contact form" inert>
+   689→  <div class="modal-panel">
+   690→    <button class="modal-close" id="modalClose" aria-label="Close contact form">
+   691→      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+   692→    </button>
+   693→    <div id="modalFormView">
+   694→      <h2 class="modal-title">Get in Touch</h2>
+   695→      <p class="modal-subtitle">Have a project in mind? Let's talk about it.</p>
+   696→      <form id="contactForm" novalidate>
+   697→        <div class="form-group">
+   698→          <label class="form-label" for="contactName">Name</label>
+   699→          <input class="form-input" type="text" id="contactName" placeholder="Your name" required>
+   700→        </div>
+   701→        <div class="form-group">
+   702→          <label class="form-label" for="contactEmail">Email</label>
+   703→          <input class="form-input" type="email" id="contactEmail" placeholder="you@example.com" required>
+   704→        </div>
+   705→        <div class="form-group">
+   706→          <label class="form-label" for="contactProject">Project Details</label>
+   707→          <textarea class="form-textarea" id="contactProject" placeholder="Tell me about your project..." required></textarea>
+   708→        </div>
+   709→        <button type="submit" class="btn btn-dark form-submit">Send Message
+   710→          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+   711→        </button>
+   712→      </form>
+   713→      <p class="modal-reply-note">We reply within one business day.</p>
+   714→    </div>
+   715→    <div id="modalSuccessView" class="hidden">
+   716→      <div class="modal-success">
+   717→        <div class="modal-success-icon">
+   718→          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+   719→        </div>
+   720→        <h3>Message Sent!</h3>
+   721→        <p>Thank you for reaching out. I'll get back to you soon.</p>
+   722→      </div>
+   723→    </div>
+   724→  </div>
+   725→</div>
+   726→
+   727→<!-- ═══════ MAIN CONTENT ═══════ -->
+   728→<main id="main">
+   729→
+   730→  <!-- HERO -->
+   731→  <section class="hero" id="home">
+   732→    <div class="hero-bg">
+   733→      <img src="/profile.jpg" alt="" aria-hidden="true">
+   734→      <div class="hero-bg-overlay"></div>
+   735→    </div>
+   736→    <div class="hero-content">
+   737→      <div class="shell">
+   738→        <div class="hero-grid">
+   739→          <div class="hero-left">
+   740→            <div class="hero-eyebrow" id="heroEyebrow">
+   741→              <span class="hero-eyebrow-dot"></span>
+   742→              AI / ML Engineer
+   743→            </div>
+   744→            <h1 class="hero-h1">
+   745→              <span class="line-reveal"><span class="line-reveal-inner" id="heroLine1">AI/ML Engineer</span></span>
+   746→              <span class="line-reveal"><span class="line-reveal-inner" id="heroLine2">who turns ideas into</span></span>
+   747→              <span class="line-reveal"><span class="line-reveal-inner" id="heroLine3">intelligent systems.</span></span>
+   748→            </h1>
+   749→            <div class="hero-meta" id="heroMeta">
+   750→              <span class="hero-meta-dot"></span>
+   751→              B.Tech AI &amp; ML | Graduating 2026
+   752→            </div>
+   753→            <div class="hero-cta" id="heroCta">
+   754→              <a href="#projects" class="btn btn-dark">View Projects
+   755→                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+   756→              </a>
+   757→              <button class="btn btn-outline" id="heroContactBtn">Get in Touch</button>
+   758→            </div>
+   759→          </div>
+   760→          <div class="hero-right">
+   761→            <div class="hero-image-card" id="heroImageCard">
+   762→              <img src="/profile.jpg" alt="Uday Kumar G — AI/ML Engineer">
+   763→            </div>
+   764→            <div class="hero-chips" id="heroChips">
+   765→              <a href="mailto:udaykumargudagudi961@gmail.com" class="hero-chip">
+   766→                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+   767→                udaykumargudagudi961@gmail.com
+   768→              </a>
+   769→              <a href="tel:8618628618" class="hero-chip">
+   770→                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+   771→                +91 8618628618
+   772→              </a>
+   773→              <span class="hero-chip">
+   774→                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+   775→                Ballari, India
+   776→              </span>
+   777→            </div>
+   778→          </div>
+   779→        </div>
+   780→        <div class="hero-status" id="heroStatus">
+   781→          <span><span class="dot"></span> Based in India</span>
+   782→          <span><span class="dot"></span> Open to opportunities</span>
+   783→          <span>Scroll to explore ↓</span>
+   784→        </div>
+   785→      </div>
+   786→    </div>
+   787→    <div class="hero-watermark" aria-hidden="true">UDAY</div>
+   788→  </section>
+   789→
+   790→  <!-- ABOUT / SKILLS -->
+   791→  <section class="section" id="about">
+   792→    <div class="shell">
+   793→      <div class="about-grid">
+   794→        <div class="about-left reveal">
+   795→          <svg class="about-deco" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+   796→            <circle cx="24" cy="16" r="8"/>
+   797→            <path d="M12 36c0-6.627 5.373-12 12-12s12 5.373 12 12"/>
+   798→            <path d="M24 8V4"/><path d="M16 12l-3-3"/><path d="M32 12l3-3"/>
+   799→            <circle cx="24" cy="16" r="3" fill="currentColor" opacity=".3"/>
+   800→          </svg>
+   801→          <div class="eyebrow"><span class="eyebrow-dot"></span>The Engineer</div>
+   802→        </div>
+   803→        <div class="about-right">
+   804→          <p class="about-text word-reveal" id="aboutText">
+   805→            I partner with ambitious ideas to ship <span class="muted-text">AI systems, deep learning models, and multi-agent applications that turn concepts into production-ready solutions.</span>
+   806→          </p>
+   807→          <div class="skills-grid" id="skills">
+   808→            <div class="reveal">
+   809→              <div class="skill-category-label">Programming Languages</div>
+   810→              <div class="skill-chips">
+   811→                <span class="skill-chip">Python</span>
+   812→                <span class="skill-chip">Java</span>
+   813→                <span class="skill-chip">SQL</span>
+   814→              </div>
+   815→            </div>
+   816→            <div class="reveal">
+   817→              <div class="skill-category-label">Tools &amp; Platforms</div>
+   818→              <div class="skill-chips">
+   819→                <span class="skill-chip">ChatGPT</span>
+   820→                <span class="skill-chip">Claude</span>
+   821→                <span class="skill-chip">Gemini</span>
+   822→                <span class="skill-chip">Groq</span>
+   823→                <span class="skill-chip">Hugging Face</span>
+   824→                <span class="skill-chip">CrewAI</span>
+   825→                <span class="skill-chip">LangChain</span>
+   826→              </div>
+   827→            </div>
+   828→            <div class="reveal">
+   829→              <div class="skill-category-label">AI &amp; Product Development</div>
+   830→              <div class="skill-chips">
+   831→                <span class="skill-chip">Prompt Engineering</span>
+   832→                <span class="skill-chip">Multi-Agent Systems</span>
+   833→                <span class="skill-chip">Generative AI Applications</span>
+   834→                <span class="skill-chip">AI Workflow Design</span>
+   835→                <span class="skill-chip">Rapid Prototyping</span>
+   836→                <span class="skill-chip">Product Development</span>
+   837→              </div>
+   838→            </div>
+   839→            <div class="reveal">
+   840→              <div class="skill-category-label">Technical Concepts</div>
+   841→              <div class="skill-chips">
+   842→                <span class="skill-chip">Machine Learning</span>
+   843→                <span class="skill-chip">Deep Learning</span>
+   844→                <span class="skill-chip">NLP</span>
+   845→                <span class="skill-chip">Computer Vision</span>
+   846→                <span class="skill-chip">Database Fundamentals</span>
+   847→                <span class="skill-chip">SDLC</span>
+   848→              </div>
+   849→            </div>
+   850→            <div class="reveal">
+   851→              <div class="skill-category-label">Tools</div>
+   852→              <div class="skill-chips">
+   853→                <span class="skill-chip">GitHub</span>
+   854→                <span class="skill-chip">VS Code</span>
+   855→                <span class="skill-chip">Google Colab</span>
+   856→                <span class="skill-chip">Jupyter Notebook</span>
+   857→                <span class="skill-chip">Firebase</span>
+   858→                <span class="skill-chip">AWS Basics</span>
+   859→              </div>
+   860→            </div>
+   861→          </div>
+   862→        </div>
+   863→      </div>
+   864→    </div>
+   865→  </section>
+   866→
+   867→  <!-- CREATE BAND -->
+   868→  <div class="create-band reveal">
+   869→    <div class="shell">
+   870→      <div class="create-pills">
+   871→        <span class="create-pill create-pill-light">I</span>
+   872→        <span class="create-pill create-pill-accent">Build</span>
+   873→        <span class="create-pill create-pill-dark">
+   874→          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+   875→        </span>
+   876→        <span class="create-pill create-pill-ghost">Intelligent Systems</span>
+   877→      </div>
+   878→    </div>
+   879→  </div>
+   880→
+   881→  <!-- PROJECTS -->
+   882→  <section class="section" id="projects">
+   883→    <div class="shell">
+   884→      <div class="projects-eyebrow reveal"><span class="eyebrow"><span class="eyebrow-dot"></span>Projects</span></div>
+   885→      <div class="projects-h2">
+   886→        <h2 class="h2"><span class="line-reveal"><span class="line-reveal-inner reveal-inner">Featured Work</span></span></h2>
+   887→      </div>
+   888→      <div class="projects-grid">
+   889→        <article class="project-card reveal">
+   890→          <div class="project-card-watermark" aria-hidden="true">IMG</div>
+   891→          <div class="project-card-top">
+   892→            <div>
+   893→              <div class="project-card-category">Deep Learning</div>
+   894→              <div class="project-card-year">2024</div>
+   895→            </div>
+   896→            <div class="project-card-arrow">
+   897→              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+   898→            </div>
+   899→          </div>
+   900→          <div class="project-card-body">
+   901→            <h3 class="project-card-title">Image Restoration and Enhancement System</h3>
+   902→            <p class="project-card-desc">Designed a CNN-based pipeline improving low-light and overexposed image visibility. Trained on 5,000+ samples.</p>
+   903→            <div class="project-card-tech">Python · OpenCV · TensorFlow · CNN</div>
+   904→            <div class="project-card-tags">
+   905→              <span class="project-tag">Deep Learning</span>
+   906→              <span class="project-tag">Computer Vision</span>
+   907→              <span class="project-tag">Python</span>
+   908→            </div>
+   909→          </div>
+   910→        </article>
+   911→        <article class="project-card reveal">
+   912→          <div class="project-card-watermark" aria-hidden="true">AGT</div>
+   913→          <div class="project-card-top">
+   914→            <div>
+   915→              <div class="project-card-category">Multi-Agent AI</div>
+   916→              <div class="project-card-year">2025</div>
+   917→            </div>
+   918→            <div class="project-card-arrow">
+   919→              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+   920→            </div>
+   921→          </div>
+   922→          <div class="project-card-body">
+   923→            <h3 class="project-card-title">AI Career Agent</h3>
+   924→            <p class="project-card-desc">Multi-agent AI career assistant: resume analysis, skill-gap analysis, learning roadmap, interview prep. Automated reports (JSON/PDF).</p>
+   925→            <div class="project-card-tech">CrewAI · Groq · Python · Streamlit</div>
+   926→            <div class="project-card-tags">
+   927→              <span class="project-tag">Multi-Agent</span>
+   928→              <span class="project-tag">NLP</span>
+   929→              <span class="project-tag">AI</span>
+   930→            </div>
+   931→          </div>
+   932→        </article>
+   933→        <article class="project-card reveal">
+   934→          <div class="project-card-watermark" aria-hidden="true">FSH</div>
+   935→          <div class="project-card-top">
+   936→            <div>
+   937→              <div class="project-card-category">Generative AI</div>
+   938→              <div class="project-card-year">2025</div>
+   939→            </div>
+   940→            <div class="project-card-arrow">
+   941→              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+   942→            </div>
+   943→          </div>
+   944→          <div class="project-card-body">
+   945→            <h3 class="project-card-title">AI Fashion Outfit Recommendation</h3>
+   946→            <p class="project-card-desc">AI fashion assistant: natural-language outfit recommendations with semantic retrieval and LLM integration.</p>
+   947→            <div class="project-card-tech">Python · Streamlit · Groq · ChromaDB</div>
+   948→            <div class="project-card-tags">
+   949→              <span class="project-tag">Generative AI</span>
+   950→              <span class="project-tag">NLP</span>
+   951→              <span class="project-tag">LLM</span>
+   952→            </div>
+   953→          </div>
+   954→        </article>
+   955→      </div>
+   956→    </div>
+   957→  </section>
+   958→
+   959→  <!-- EXPERIENCE -->
+   960→  <section class="section" id="experience">
+   961→    <div class="shell">
+   962→      <div class="eyebrow reveal"><span class="eyebrow-dot"></span>Experience</div>
+   963→      <h2 class="h2 reveal"><span class="line-reveal"><span class="line-reveal-inner reveal-inner">Internships &amp; Work</span></span></h2>
+   964→      <div class="exp-rows">
+   965→        <div class="exp-row reveal">
+   966→          <div class="exp-row-fill"></div>
+   967→          <div class="exp-row-inner">
+   968→            <div class="exp-row-top">
+   969→              <div>
+   970→                <h3 class="exp-row-role">Cloud Computing Intern</h3>
+   971→                <p class="exp-row-company">SmartBridge Educational Services</p>
+   972→                <p class="exp-row-meta">02/2026 – 05/2026 · Ballari</p>
+   973→              </div>
+   974→            </div>
+   975→            <p class="exp-row-desc">VTU-sponsored internship focused on AWS Cloud technologies. Hands-on cloud deployment, storage, security.</p>
+   976→          </div>
+   977→        </div>
+   978→        <div class="exp-row reveal">
+   979→          <div class="exp-row-fill"></div>
+   980→          <div class="exp-row-inner">
+   981→            <div class="exp-row-top">
+   982→              <div>
+   983→                <h3 class="exp-row-role">Python Developer</h3>
+   984→                <p class="exp-row-company">EZTS IT/Computers – Software</p>
+   985→                <p class="exp-row-meta">04/2024 – 05/2024 · Ballari</p>
+   986→              </div>
+   987→            </div>
+   988→            <p class="exp-row-desc">Python automation scripts using OOP/FP, boosting productivity by 40%. Delivered 10+ automation modules.</p>
+   989→          </div>
+   990→        </div>
+   991→      </div>
+   992→    </div>
+   993→  </section>
+   994→
+   995→  <!-- EDUCATION -->
+   996→  <section class="section" id="education">
+   997→    <div class="shell">
+   998→      <div class="eyebrow reveal"><span class="eyebrow-dot"></span>Education</div>
+   999→      <h2 class="h2 reveal"><span class="line-reveal"><span class="line-reveal-inner reveal-inner">Academic Background</span></span></h2>
+  1000→      <div class="edu-grid">
+  1001→        <div class="edu-card reveal">
+  1002→          <div class="edu-card-year">2022 – 2026</div>
+  1003→          <div class="edu-card-degree">B.Tech AI &amp; ML</div>
+  1004→          <p class="edu-card-school">BITM Bellary</p>
+  1005→          <div class="edu-card-score">81% <span>(CGPA 8.1)</span></div>
+  1006→        </div>
+  1007→        <div class="edu-card reveal">
+  1008→          <div class="edu-card-year">2020 – 2022</div>
+  1009→          <div class="edu-card-degree">12th PUE (PCMC)</div>
+  1010→          <p class="edu-card-school">Sri Vidyaniketan PU College</p>
+  1011→          <div class="edu-card-score">85%</div>
+  1012→        </div>
+  1013→        <div class="edu-card reveal">
+  1014→          <div class="edu-card-year">2020</div>
+  1015→          <div class="edu-card-degree">10th (KSEEB)</div>
+  1016→          <p class="edu-card-school">Little Hearts School</p>
+  1017→          <div class="edu-card-score">84%</div>
+  1018→        </div>
+  1019→      </div>
+  1020→    </div>
+  1021→  </section>
+  1022→
+  1023→  <!-- CERTIFICATES -->
+  1024→  <section class="section" id="certificates">
+  1025→    <div class="shell">
+  1026→      <div class="eyebrow reveal"><span class="eyebrow-dot"></span>Certificates</div>
+  1027→      <h2 class="h2 reveal"><span class="line-reveal"><span class="line-reveal-inner reveal-inner">Certifications</span></span></h2>
+  1028→      <div class="certs-grid">
+  1029→        <div class="cert-card reveal">
+  1030→          <div class="cert-card-issuer">Deloitte</div>
+  1031→          <p class="cert-card-name">Data Analytics Job Simulation</p>
+  1032→        </div>
+  1033→        <div class="cert-card reveal">
+  1034→          <div class="cert-card-issuer">AWS</div>
+  1035→          <p class="cert-card-name">Cloud Quest: Cloud Practitioner</p>
+  1036→        </div>
+  1037→        <div class="cert-card reveal">
+  1038→          <div class="cert-card-issuer">British Airways</div>
+  1039→          <p class="cert-card-name">Data Science Job Simulation</p>
+  1040→        </div>
+  1041→        <div class="cert-card reveal">
+  1042→          <div class="cert-card-issuer">Google Cloud</div>
+  1043→          <p class="cert-card-name">Cloud Career Launchpad</p>
+  1044→        </div>
+  1045→        <div class="cert-card reveal">
+  1046→          <div class="cert-card-issuer">IBM</div>
+  1047→          <p class="cert-card-name">Getting Started with Enterprise AI</p>
+  1048→        </div>
+  1049→      </div>
+  1050→    </div>
+  1051→  </section>
+  1052→
+  1053→  <!-- STATS -->
+  1054→  <section class="section" id="stats">
+  1055→    <div class="shell">
+  1056→      <div class="stats-panel reveal">
+  1057→        <div class="stats-eyebrow"><span class="eyebrow"><span class="eyebrow-dot"></span>By the numbers</span></div>
+  1058→        <div class="stats-h2">
+  1059→          <h2 class="h2"><span class="line-reveal"><span class="line-reveal-inner reveal-inner">Impact in numbers, not words.</span></span></h2>
+  1060→        </div>
+  1061→        <div class="stats-grid">
+  1062→          <div class="stat-item">
+  1063→            <div class="stat-number" data-target="5" data-suffix="+">0</div>
+  1064→            <div class="stat-label">Projects Shipped</div>
+  1065→          </div>
+  1066→          <div class="stat-item">
+  1067→            <div class="stat-number" data-target="81" data-suffix="%">0</div>
+  1068→            <div class="stat-label">Academic Score</div>
+  1069→          </div>
+  1070→          <div class="stat-item">
+  1071→            <div class="stat-number" data-target="5" data-suffix="">0</div>
+  1072→            <div class="stat-label">Certifications</div>
+  1073→          </div>
+  1074→          <div class="stat-item">
+  1075→            <div class="stat-number" data-target="3" data-suffix="+">0</div>
+  1076→            <div class="stat-label">Skills Domains</div>
+  1077→          </div>
+  1078→        </div>
+  1079→      </div>
+  1080→    </div>
+  1081→  </section>
+  1082→
+  1083→</main>
+  1084→
+  1085→<!-- FOOTER -->
+  1086→<footer class="site-footer" id="contact">
+  1087→  <div class="shell">
+  1088→    <div class="footer-cta reveal">
+  1089→      <h2 class="h2"><span class="line-reveal"><span class="line-reveal-inner reveal-inner">Have a project in mind? Let's build something intelligent.</span></span></h2>
+  1090→      <div style="margin-top:2rem">
+  1091→        <button class="btn btn-light" id="footerContactBtn">Get in Touch
+  1092→          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+  1093→        </button>
+  1094→      </div>
+  1095→    </div>
+  1096→    <div class="footer-cols">
+  1097→      <div>
+  1098→        <div class="footer-brand-name">Uday Kumar G</div>
+  1099→        <p class="footer-brand-tagline">AI/ML Engineer turning ideas into intelligent systems.</p>
+  1100→      </div>
+  1101→      <div class="footer-col">
+  1102→        <div class="footer-col-title">Navigation</div>
+  1103→        <a href="#about">About</a>
+  1104→        <a href="#skills">Skills</a>
+  1105→        <a href="#projects">Projects</a>
+  1106→        <a href="#experience">Experience</a>
+  1107→        <a href="#education">Education</a>
+  1108→      </div>
+  1109→      <div class="footer-col">
+  1110→        <div class="footer-col-title">Connect</div>
+  1111→        <a href="mailto:udaykumargudagudi961@gmail.com">Email</a>
+  1112→        <a href="tel:8618628618">Phone</a>
+  1113→        <a href="https://linkedin.com/in/udaykumargudagudi" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+  1114→        <a href="https://github.com/udaykumar5683" target="_blank" rel="noopener noreferrer">GitHub</a>
+  1115→      </div>
+  1116→      <div class="footer-col">
+  1117→        <div class="footer-col-title">Certifications</div>
+  1118→        <a href="https://uday-portfolio-brown.vercel.app" target="_blank" rel="noopener noreferrer">Deloitte</a>
+  1119→        <a href="https://uday-portfolio-brown.vercel.app" target="_blank" rel="noopener noreferrer">AWS</a>
+  1120→        <a href="https://uday-portfolio-brown.vercel.app" target="_blank" rel="noopener noreferrer">British Airways</a>
+  1121→        <a href="https://uday-portfolio-brown.vercel.app" target="_blank" rel="noopener noreferrer">Google Cloud</a>
+  1122→        <a href="https://uday-portfolio-brown.vercel.app" target="_blank" rel="noopener noreferrer">IBM</a>
+  1123→      </div>
+  1124→    </div>
+  1125→    <div class="footer-legal">
+  1126→      <span>© 2025 Uday Kumar G. All rights reserved.</span>
+  1127→      <a href="https://drive.google.com/file/d/1dYswQsAMdldPQd37jZUYhBz10RBZoPO_/view" target="_blank" rel="noopener noreferrer">View Resume →</a>
+  1128→    </div>
+  1129→  </div>
+  1130→  <div class="footer-watermark" aria-hidden="true">UDAY</div>
+  1131→</footer>
+  1132→
+  1133→<!-- ═══════ JAVASCRIPT ═══════ -->
+  1134→<script type="importmap">
+  1135→{
+  1136→  "imports": {
+  1137→    "lenis": "https://unpkg.com/lenis@1.3.23/dist/lenis.mjs"
+  1138→  }
+  1139→}
+  1140→</script>
+  1141→<script type="module">
+  1142→import Lenis from 'lenis';
+  1143→
+  1144→/* ── Scroll Lock ── */
+  1145→let scrollEnabled = false;
+  1146→const html = document.documentElement;
+  1147→let lenis;
+  1148→
+  1149→function stopScroll() {
+  1150→  scrollEnabled = false;
+  1151→  if (lenis) lenis.stop();
+  1152→  html.style.overflow = 'hidden';
+  1153→}
+  1154→function startScroll() {
+  1155→  scrollEnabled = true;
+  1156→  if (lenis) lenis.start();
+  1157→  html.style.overflow = '';
+  1158→}
+  1159→
+  1160→/* ── Init Lenis ── */
+  1161→lenis = new Lenis({
+  1162→  duration: 1.2,
+  1163→  easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+  1164→  touchMultiplier: 2,
+  1165→});
+  1166→function raf(time) {
+  1167→  lenis.raf(time);
+  1168→  requestAnimationFrame(raf);
+  1169→}
+  1170→requestAnimationFrame(raf);
+  1171→
+  1172→/* Scale up above 1920px */
+  1173→function handleScale() {
+  1174→  const w = window.innerWidth;
+  1175→  if (w > 1920) {
+  1176→    html.style.fontSize = (w / 1920 * 16) + 'px';
+  1177→  }
+  1178→}
+  1179→window.addEventListener('resize', handleScale);
+  1180→handleScale();
+  1181→
+  1182→stopScroll();
+  1183→
+  1184→/* ── Smooth scroll for anchor links ── */
+  1185→document.querySelectorAll('a[href^="#"]').forEach(a => {
+  1186→  a.addEventListener('click', (e) => {
+  1187→    const target = document.querySelector(a.getAttribute('href'));
+  1188→    if (target) {
+  1189→      e.preventDefault();
+  1190→      lenis.scrollTo(target, { offset: -60 });
+  1191→    }
+  1192→  });
+  1193→});
+  1194→
+  1195→/* ── Page Loader ── */
+  1196→const loader = document.getElementById('pageLoader');
+  1197→const loaderFill = document.getElementById('loaderFill');
+  1198→const loaderCounter = document.getElementById('loaderCounter');
+  1199→
+  1200→function animateCounter(el, from, to, duration) {
+  1201→  const start = performance.now();
+  1202→  function easeInOutCubic(t) {
+  1203→    return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+  1204→  }
+  1205→  function tick(now) {
+  1206→    const elapsed = now - start;
+  1207→    const progress = Math.min(elapsed / duration, 1);
+  1208→    const value = Math.round(from + (to - from) * easeInOutCubic(progress));
+  1209→    el.textContent = String(value).padStart(3, '0');
+  1210→    if (progress < 1) requestAnimationFrame(tick);
+  1211→  }
+  1212→  requestAnimationFrame(tick);
+  1213→}
+  1214→
+  1215→setTimeout(() => {
+  1216→  loaderFill.classList.add('go');
+  1217→  animateCounter(loaderCounter, 0, 100, 1300);
+  1218→}, 200);
+  1219→
+  1220→setTimeout(() => {
+  1221→  loader.classList.add('exit');
+  1222→  loader.addEventListener('transitionend', () => {
+  1223→    loader.remove();
+  1224→    startScroll();
+  1225→    // Show header
+  1226→    document.getElementById('siteHeader').classList.add('visible');
+  1227→    // Trigger hero animations
+  1228→    triggerHeroAnimations();
+  1229→  }, { once: true });
+  1230→  // Fallback in case transitionend doesn't fire
+  1231→  setTimeout(() => {
+  1232→    if (loader.parentNode) {
+  1233→      loader.remove();
+  1234→      startScroll();
+  1235→      document.getElementById('siteHeader').classList.add('visible');
+  1236→      triggerHeroAnimations();
+  1237→    }
+  1238→  }, 1200);
+  1239→}, 2000);
+  1240→
+  1241→/* ── Hero Animations ── */
+  1242→function triggerHeroAnimations() {
+  1243→  const eyebrow = document.getElementById('heroEyebrow');
+  1244→  const line1 = document.getElementById('heroLine1');
+  1245→  const line2 = document.getElementById('heroLine2');
+  1246→  const line3 = document.getElementById('heroLine3');
+  1247→  const meta = document.getElementById('heroMeta');
+  1248→  const cta = document.getElementById('heroCta');
+  1249→  const imgCard = document.getElementById('heroImageCard');
+  1250→  const chips = document.getElementById('heroChips');
+  1251→  const status = document.getElementById('heroStatus');
+  1252→
+  1253→  setTimeout(() => eyebrow && eyebrow.classList.add('visible'), 200);
+  1254→  setTimeout(() => line1 && line1.classList.add('visible'), 250);
+  1255→  setTimeout(() => line2 && line2.classList.add('visible'), 370);
+  1256→  setTimeout(() => line3 && line3.classList.add('visible'), 490);
+  1257→  // meta, cta, imgCard, chips, status use their own CSS transition-delay
+  1258→  setTimeout(() => meta && meta.classList.add('visible'), 500);
+  1259→  setTimeout(() => cta && cta.classList.add('visible'), 600);
+  1260→  setTimeout(() => imgCard && imgCard.classList.add('visible'), 300);
+  1261→  setTimeout(() => chips && chips.classList.add('visible'), 500);
+  1262→  setTimeout(() => status && status.classList.add('visible'), 800);
+  1263→}
+  1264→
+  1265→/* ── Clock ── */
+  1266→function updateClock() {
+  1267→  const now = new Date();
+  1268→  let h = now.getHours();
+  1269→  const m = String(now.getMinutes()).padStart(2, '0');
+  1270→  const ampm = h >= 12 ? 'pm' : 'am';
+  1271→  h = h % 12 || 12;
+  1272→  const timeStr = `${h}:${m}${ampm}`;
+  1273→  const dateStr = now.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+  1274→
+  1275→  const clockTime = document.getElementById('clockTime');
+  1276→ const clockDate = document.getElementById('clockDate');
+  1277→ const navTime = document.getElementById('navTime');
+  1278→  if (clockTime) clockTime.textContent = timeStr;
+  1279→  if (clockDate) clockDate.textContent = dateStr;
+  1280→  if (navTime) navTime.textContent = `${dateStr} · ${timeStr}`;
+  1281→}
+  1282→updateClock();
+  1283→setInterval(updateClock, 10000);
+  1284→
+  1285→/* ── Nav Menu ── */
+  1286→const menuBtn = document.getElementById('menuBtn');
+  1287→const navOverlay = document.getElementById('navOverlay');
+  1288→const navClose = document.getElementById('navClose');
+  1289→const navLinks = navOverlay.querySelectorAll('.nav-link');
+  1290→const navCtaBtn = document.getElementById('navCtaBtn');
+  1291→
+  1292→function openNav() {
+  1293→  stopScroll();
+  1294→  navOverlay.classList.add('open');
+  1295→  navOverlay.removeAttribute('inert');
+  1296→  menuBtn.setAttribute('aria-expanded', 'true');
+  1297→  document.body.style.overflow = 'hidden';
+  1298→}
+  1299→function closeNav() {
+  1300→  navOverlay.classList.remove('open');
+  1301→  navOverlay.setAttribute('inert', '');
+  1302→  menuBtn.setAttribute('aria-expanded', 'false');
+  1303→  startScroll();
+  1304→}
+  1305→
+  1306→menuBtn.addEventListener('click', openNav);
+  1307→navClose.addEventListener('click', closeNav);
+  1308→navLinks.forEach(link => link.addEventListener('click', () => { closeNav(); }));
+  1309→if (navCtaBtn) navCtaBtn.addEventListener('click', (e) => { e.preventDefault(); closeNav(); openModal(); });
+  1310→document.addEventListener('keydown', (e) => {
+  1311→  if (e.key === 'Escape' && navOverlay.classList.contains('open')) closeNav();
+  1312→});
+  1313→
+  1314→/* ── Contact Modal ── */
+  1315→const contactModal = document.getElementById('contactModal');
+  1316→const modalClose = document.getElementById('modalClose');
+  1317→const contactForm = document.getElementById('contactForm');
+  1318→const modalFormView = document.getElementById('modalFormView');
+  1319→const modalSuccessView = document.getElementById('modalSuccessView');
+  1320→
+  1321→function openModal() {
+  1322→  stopScroll();
+  1323→  contactModal.classList.add('open');
+  1324→  contactModal.removeAttribute('inert');
+  1325→  document.body.style.overflow = 'hidden';
+  1326→  // Reset form state
+  1327→  modalFormView.classList.remove('hidden');
+  1328→  modalSuccessView.classList.add('hidden');
+  1329→  if (contactForm) contactForm.reset();
+  1330→}
+  1331→function closeModal() {
+  1332→  contactModal.classList.remove('open');
+  1333→  contactModal.setAttribute('inert', '');
+  1334→  startScroll();
+  1335→}
+  1336→
+  1337→const heroContactBtn = document.getElementById('heroContactBtn');
+  1338→const footerContactBtn = document.getElementById('footerContactBtn');
+  1339→
+  1340→if (heroContactBtn) heroContactBtn.addEventListener('click', openModal);
+  1341→if (footerContactBtn) footerContactBtn.addEventListener('click', openModal);
+  1342→if (modalClose) modalClose.addEventListener('click', closeModal);
+  1343→
+  1344→contactModal.addEventListener('click', (e) => {
+  1345→  if (e.target === contactModal) closeModal();
+  1346→});
+  1347→
+  1348→document.addEventListener('keydown', (e) => {
+  1349→  if (e.key === 'Escape' && contactModal.classList.contains('open')) closeModal();
+  1350→});
+  1351→
+  1352→if (contactForm) {
+  1353→  contactForm.addEventListener('submit', (e) => {
+  1354→    e.preventDefault();
+  1355→    modalFormView.classList.add('hidden');
+  1356→    modalSuccessView.classList.remove('hidden');
+  1357→  });
+  1358→}
+  1359→
+  1360→/* ── Scroll Reveal (IntersectionObserver) ── */
+  1361→const revealElements = document.querySelectorAll('.reveal, .reveal-inner');
+  1362→const revealObserver = new IntersectionObserver((entries) => {
+  1363→  entries.forEach(entry => {
+  1364→    if (entry.isIntersecting) {
+  1365→      entry.target.classList.add('visible');
+  1366→      revealObserver.unobserve(entry.target);
+  1367→    }
+  1368→  });
+  1369→}, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+  1370→
+  1371→revealElements.forEach(el => revealObserver.observe(el));
+  1372→
+  1373→/* ── Word Reveal ── */
+  1374→function setupWordReveal() {
+  1375→  const container = document.getElementById('aboutText');
+  1376→  if (!container) return;
+  1377→  // Get the HTML, split text nodes into words wrapped in spans
+  1378→  const walker = document.createTreeWalker(container, NodeFilter.SHOW_TEXT, null, false);
+  1379→  const textNodes = [];
+  1380→  while (walker.nextNode()) textNodes.push(walker.currentNode);
+  1381→
+  1382→  let wordIndex = 0;
+  1383→  textNodes.forEach(node => {
+  1384→    const text = node.textContent;
+  1385→    const words = text.split(/(\s+)/);
+  1386→    const frag = document.createDocumentFragment();
+  1387→    words.forEach(part => {
+  1388→      if (/^\s+$/.test(part)) {
+  1389→        frag.appendChild(document.createTextNode(part));
+  1390→      } else if (part.length > 0) {
+  1391→        const span = document.createElement('span');
+  1392→        span.className = 'word-reveal-word';
+  1393→        span.textContent = part;
+  1394→        span.style.transitionDelay = (wordIndex * 35) + 'ms';
+  1395→        frag.appendChild(span);
+  1396→        wordIndex++;
+  1397→      }
+  1398→    });
+  1399→    node.parentNode.replaceChild(frag, node);
+  1400→  });
+  1401→
+  1402→  // Observe for visibility
+  1403→  const observer = new IntersectionObserver((entries) => {
+  1404→    entries.forEach(entry => {
+  1405→      if (entry.isIntersecting) {
+  1406→        container.querySelectorAll('.word-reveal-word').forEach(w => w.classList.add('visible'));
+  1407→        observer.unobserve(container);
+  1408→      }
+  1409→    });
+  1410→  }, { threshold: 0.2 });
+  1411→  observer.observe(container);
+  1412→}
+  1413→setupWordReveal();
+  1414→
+  1415→/* ── Stats Count-Up ── */
+  1416→const statNumbers = document.querySelectorAll('.stat-number[data-target]');
+  1417→let statsCounted = false;
+  1418→const statsObserver = new IntersectionObserver((entries) => {
+  1419→  entries.forEach(entry => {
+  1420→    if (entry.isIntersecting && !statsCounted) {
+  1421→      statsCounted = true;
+  1422→      statNumbers.forEach(el => {
+  1423→        const target = parseInt(el.dataset.target, 10);
+  1424→        const suffix = el.dataset.suffix || '';
+  1425→        const duration = 1500;
+  1426→        const start = performance.now();
+  1427→        function easeOutExpo(t) {
+  1428→          return t === 1 ? 1 : 1 - Math.pow(2, -10 * t);
+  1429→        }
+  1430→        function tick(now) {
+  1431→          const elapsed = now - start;
+  1432→          const progress = Math.min(elapsed / duration, 1);
+  1433→          const value = Math.round(target * easeOutExpo(progress));
+  1434→          el.textContent = value + suffix;
+  1435→          if (progress < 1) requestAnimationFrame(tick);
+  1436→        }
+  1437→        requestAnimationFrame(tick);
+  1438→      });
+  1439→      statsObserver.unobserve(entry.target);
+  1440→    }
+  1441→  });
+  1442→}, { threshold: 0.3 });
+  1443→
+  1444→const statsPanel = document.querySelector('.stats-panel');
+  1445→if (statsPanel) statsObserver.observe(statsPanel);
+  1446→
+  1447→</script>
+  1448→</body>
+  1449→</html>

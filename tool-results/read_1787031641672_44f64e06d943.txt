@@ -1,0 +1,170 @@
+   201→   201→   201→- **Left column** (`lg:grid-column: span 7`), `display:flex; flex-direction:column; gap:1.75rem`:
+   202→   202→   202→  - **Eyebrow** (reveal `opacity/translateY(10px)`, delay 200ms): a `font-size:.875rem; font-weight:500; color:rgba(17,17,17,.7); display:inline-flex; align-items:center; gap:.5rem` with a leading `0.375rem` dot (`background:rgba(17,17,17,.5); border-radius:9999px`) → **"Independent Studio"**.
+   203→   203→   203→  - **H1** (line reveal, gated on `ready`, delay 250ms, `lineStagger 120ms`, easeOutCubic 900ms, `overflow` clip): `max-width:18ch; font-size:2.25rem; font-weight:600; line-height:.98; letter-spacing:-.02em` (sm 3rem, md 3.75rem). Lines: **"Bold ideas,"** / **"shipped with"** / **"quiet precision"**.
+   204→   204→   204→  - **Rating row** (reveal, delay 650ms): `display:flex; align-items:center; gap:.75rem`. A `color:#b15f2c` span with **5** Star icons (`font-size:1rem`), then `font-size:.875rem; font-weight:500; color:rgba(17,17,17,.7)` text **"200+ brands shipped"**.
+   205→   205→   205→  - **CTA row** (reveal, delay 750ms): `display:flex; flex-wrap:wrap; gap:.75rem`. Two pill buttons: **"Let's Talk"** (variant `dark`, with arrow → opens request modal) and **"View Work"** (variant `outline` → `scrollTo('works')`).
+   206→   206→   206→- **Right column** (`lg:span 5`), `display:flex; flex-direction:column; align-items:flex-start; gap:2rem` (lg: `align-items:flex-end`):
+   207→   207→   207→  - **HeroCard** (carousel) — reveal `opacity/translateY(16px) scale(.96→1)`, `{200,24}`, delay 400ms. Card: `width:100%; max-width:24rem (lg width:19rem); border-radius:1.25rem; background:rgba(255,255,255,.7); padding:.5rem; box-shadow: sm; box-shadow ring 1px rgba(230,229,226,.7); backdrop-filter:blur(12px)`. Inside a clickable row (`display:flex; gap:.5rem; cursor:pointer; border-radius:.875rem`):
+   208→   208→   208→    - Left tile: `aspect-ratio:1; width:6rem; display:grid; place-items:center; border-radius:.875rem; background:#0a0a0a; font-size:1.875rem; color:#fff` containing a `LogoMark` in `color:#cf8047`.
+   209→   209→   209→    - Right panel: `flex:1; border-radius:.875rem; background:rgba(241,240,238,.7); padding:.75rem; display:flex; flex-direction:column; justify-content:space-between`. Top = a `position:relative; min-height:3.25rem` slot showing the active item: a `font-size:.65rem; font-weight:500; uppercase; letter-spacing:.05em; color:rgba(17,17,17,.45)` **caption** over a `max-width:8rem; font-size:.875rem; font-weight:500; line-height:1.35` **title**. Items (cycle): `{caption:"Conversion design", title:"Crafted to convert."}`, `{caption:"Engineering", title:"Built to scale."}`, `{caption:"Brand systems", title:"Designed to last."}`. Bottom row: dots on the left (`h:1px*`… actually 3 dashes `height:.25rem; border-radius:9999px`; active = `width:1rem; background:rgba(17,17,17,.7)`, inactive = `width:.375rem; background:rgba(17,17,17,.2)`, `transition:all .3s`) and prev/next buttons on the right (`size:1.75rem; display:grid; place-items:center; border-radius:9999px; background:#fff; color:rgba(17,17,17,.7); ring 1px #e6e5e2; hover color:#111`, prev = ArrowRight rotated 180°, next = ArrowRight). **Behavior:** clicking the card or Next advances; Prev goes back; wraps around `(i+step+n)%n`. Swap animation: outgoing item fades/slides `translateY(±14px)`, incoming enters from `translateY(∓14px) → 0`, `{300,28}`.
+   210→   210→   210→  - **Partners** (reveal `translateY(14px)`, `{200,24}`, delay 550ms): `width:100%; max-width:24rem (lg 19rem)`. A label `margin-bottom:.75rem; font-size:.75rem; font-weight:500; color:rgba(17,17,17,.45); text-align:left` (lg right) **"Trusted by"**. Then a `display:grid; grid-template-columns:repeat(4,1fr); column-gap:1rem; row-gap:.75rem` list; each item is a hover-spring span (`translateY(0→-2px)`, `opacity .7→1`, `{320,20}`) `display:flex; align-items:center; gap:.375rem; font-size:.75rem; color:rgba(17,17,17,.7)` → `[CircleDot .875rem color:rgba(17,17,17,.4)] <name>`. Names: **Kaido, Northpeak, Vellum, Orbit, Brightline, Cobalt, Mesa**.
+   211→   211→   211→
+   212→   212→   212→**E) Bottom status bar** (reveal opacity only, delay 900ms): `.shell` `display:flex; align-items:center; justify-content:space-between; gap:.75rem; border-top:1px solid rgba(17,17,17,.1); padding:1.25rem; font-size:.75rem; font-weight:500; text-transform:uppercase; letter-spacing:.025em; color:rgba(17,17,17,.6)` (sm px 2rem). Left **"Working since 2014"**; center **"Remote-first, worldwide"** (hidden below sm); right `inline-flex; gap:.5rem` **"Scroll to explore"** + a `↓`.
+   213→   213→   213→
+   214→   214→   214→---
+   215→   215→   215→
+   216→   216→   216→### 3) About (`#about`)
+   217→   217→   217→
+   218→   218→   218→`section#about` `background:#fff`. `.shell` `display:grid; grid-template-columns:1fr; align-items:center; gap:3rem; padding:5rem 1.25rem` (sm px 2rem; lg: `grid-template-columns:1fr 1fr; padding-block:7rem`).
+   219→   219→   219→
+   220→   220→   220→- **Left — globe block** `position:relative; min-height:14rem` (lg 20rem): a big background `Globe` icon `position:absolute; left:-1rem; top:50%; transform:translateY(-50%); font-size:12rem; color:rgba(17,17,17,.1)` (sm 16rem, lg `left:-1.5rem; 20rem`). Eyebrow **"The Studio"** (`position:relative`). Bottom-left a reveal block (`translateY(12px)`) `display:flex; align-items:center; gap:.75rem; font-size:.875rem; color:rgba(17,17,17,.7)` → `[Globe 1.5rem color:#111] <span max-width:14rem>` **"A distributed team building across every time zone."**
+   221→   221→   221→- **Right — statement** `display:flex; flex-direction:column; gap:2.5rem`:
+   222→   222→   222→  - **H2** (word reveal, `wordStagger 35ms`, easeOutQuart 700ms, `translateY 24px`): `font-size:1.5rem; font-weight:500; line-height:1.35; letter-spacing:-.01em` (sm 1.875rem). Text: **"We partner with ambitious teams to ship "** then in `color:#8d8d8d`: **"digital products, brand systems, and the strategy that holds them together."**
+   223→   223→   223→  - **Footer row** (reveal `translateY(12px)`, delay 200ms): `display:flex; flex-wrap:wrap; align-items:flex-end; justify-content:space-between; gap:1.5rem; border-top:1px solid #e6e5e2; padding-top:1.5rem`. Left: a `font-size:.875rem; color:rgba(17,17,17,.45)` label **"Find us online"** above a `display:flex; gap:.5rem` row of 3 social chips (`size:2.25rem; display:grid; place-items:center; border-radius:9999px; font-size:.875rem`; each inner icon hover-springs `scale 1→1.18`, `{320,16}`): **X / Twitter** = `background:#b15f2c; color:#fff` with the X icon; **Behance** and **Dribbble** = `background:#f1f0ee; color:rgba(17,17,17,.7)` with a CircleDot icon. Right: a pill button **"About Us"** (variant `outline`, withArrow, href `#about`).
+   224→   224→   224→
+   225→   225→   225→---
+   226→   226→   226→
+   227→   227→   227→### 4) CreateBand ("We Build → Better")
+   228→   228→   228→
+   229→   229→   229→`section` `background:#fff`. `ul` `.shell` `display:flex; flex-direction:column; gap:.75rem; padding:2.5rem 1.25rem` (sm: `flex-direction:row; gap:1rem; px 2rem`). Four `li flex:1`, each a reveal (`translateY(28px)`, `{200,22}`, delay `index*120ms`) wrapping a hover-spring tile (`scale 1→1.03`, `{300,18}`) `display:grid; place-items:center; height:6rem; border-radius:9999px; font-size:1.875rem; font-weight:500` (sm: `height:10rem; font-size:2.25rem`). Words/variants:
+   230→   230→   230→1. **"We"** — variant `light`: `background:#f1f0ee; color:#111`.
+   231→   231→   231→2. **"Build"** — variant `accent`: `background:linear-gradient(to bottom right,#cf8047,#97501f); color:#fff`.
+   232→   232→   232→3. (arrow) — variant `dark`: `background:#0a0a0a; color:#fff`, content = ArrowRight icon `font-size:2.25rem` (sm 3rem).
+   233→   233→   233→4. **"Better"** — variant `ghost`: `background:rgba(241,240,238,.6); color:rgba(17,17,17,.35)`.
+   234→   234→   234→
+   235→   235→   235→---
+   236→   236→   236→
+   237→   237→   237→### 5) Portfolio (`#works`)
+   238→   238→   238→
+   239→   239→   239→`section#works` `background:#fff`. `.shell` `padding:2.5rem 1.25rem 5rem` (sm px 2rem; lg pb 7rem).
+   240→   240→   240→
+   241→   241→   241→- **Eyebrow** (reveal, centered): an Eyebrow with extra `border:1px solid #e6e5e2; border-radius:9999px; padding:.375rem 1rem` → **"Portfolio"**.
+   242→   242→   242→- **H2** (line reveal, easeOutCubic 900ms, delay 120ms, `overflow`, centered, `width:fit-content`): `font-size:2.25rem; font-weight:600; letter-spacing:-.02em` (sm 3rem) → **"Selected Work"**.
+   243→   243→   243→- **Cards** `display:grid; grid-template-columns:1fr; gap:1.5rem` (md=768px: 2 cols). Each card is a reveal `li` (`translateY(48px)`, `{180,26}`, delay `index*90ms`) wrapping a link → hover-spring `article` (`translateY(0→-8px) scale(1→1.012)`, `{260,22}`): `position:relative; min-height:22rem; overflow:hidden; border-radius:2rem; background:#0a0a0a; padding:1.5rem; color:#fff; box-shadow ring 1px rgba(255,255,255,.05)` (sm `min-height:26rem; padding:2rem`).
+   244→   244→   244→  - Top meta row `display:flex; justify-content:space-between; font-size:.75rem; text-transform:uppercase; letter-spacing:.025em; color:rgba(255,255,255,.45)`: left `<category> — <year>`; right a hover-spring badge **triggered by the whole card** (`rotate 0→45deg, scale 1→1.08`, `{280,18}`) `size:2.75rem; display:grid; place-items:center; border-radius:9999px; background:rgba(255,255,255,.1); color:#fff; ring 1px rgba(255,255,255,.15)` containing ArrowUpRight.
+   245→   245→   245→  - Centered watermark: `position:absolute; inset:0; display:grid; place-items:center; pointer-events:none` → `[LogoMark font-size:4.5rem color:rgba(255,255,255,.9)]` with a tiny `® font-size:.75rem color:rgba(255,255,255,.6)`.
+   246→   246→   246→  - Bottom block `position:absolute; inset-inline:1.5rem; bottom:1.5rem` (sm 2rem): `h3 font-size:1.5rem; font-weight:500; letter-spacing:-.01em` (sm 1.875rem) = name; `p margin-top:.5rem; max-width:28rem; font-size:.875rem; color:rgba(255,255,255,.55)` = description; then a `margin-top:1.25rem; display:flex; flex-wrap:wrap; gap:.5rem` of tag chips (`display:inline-flex; border:1px solid rgba(255,255,255,.25); color:#fff; border-radius:9999px; padding:.5rem 1rem; font-size:.875rem`).
+   247→   247→   247→  - **Items:**
+   248→   248→   248→    1. **Aster Labs** — Branding — 2025 — "A complete identity and go-to-market system for a fast-moving research startup." — tags: Branding, Strategy, Design.
+   249→   249→   249→    2. **Nova Finance** — Product — 2024 — "A finance platform reimagined — clear data, calm interfaces, and effortless flows." — tags: Product Design, Web App, QA.
+   250→   250→   250→    3. **Helio Studio** — Identity — 2023 — "A bold visual identity and art direction system built to scale across every surface." — tags: Brand Identity, Art Direction.
+   251→   251→   251→    4. **Pulse Health** — Mobile — 2023 — "A wellness app grounded in research, shipped end to end from concept to release." — tags: Mobile App, UX Research, Development.
+   252→   252→   252→
+   253→   253→   253→---
+   254→   254→   254→
+   255→   255→   255→### 6) Services (`#services`)
+   256→   256→   256→
+   257→   257→   257→`section#services` `background:#fff`. `.shell` `padding:5rem 1.25rem` (sm px 2rem; lg py 7rem).
+   258→   258→   258→
+   259→   259→   259→- **Eyebrow** (reveal) **"Services"**.
+   260→   260→   260→- **H2** (line reveal, easeOutCubic 900ms, delay 120ms, overflow): `margin:1.25rem 0 3rem; max-width:16ch; font-size:2.25rem; font-weight:600; letter-spacing:-.02em` (sm `margin-bottom:3.5rem; font-size:3rem`) → **"What we do best"**.
+   261→   261→   261→- **Rows** `ul`. Each row is a reveal `li` (`translateY(24px)`, `{200,24}`, delay `index*80ms`) `border-top:1px solid #e6e5e2` (first row no top border) wrapping a link → a **hover-spring row** that fills on hover: `from { background:rgba(241,240,238,0); padding-left:1.5rem; padding-right:1.5rem }` → `to { background:rgba(241,240,238,1); padding-left:2rem; padding-right:1.25rem }`, `{240,26}`; base `display:flex; align-items:center; gap:1rem; border-radius:1.25rem; padding-block:1.5rem` (sm `gap:1.5rem; padding-block:2rem`). Cells: index `width:1.75rem; font-size:.875rem; font-weight:500; color:rgba(17,17,17,.4)` (sm `width:2.5rem`); `h3 flex:1; font-size:1.5rem; font-weight:500; letter-spacing:-.01em` (sm 1.875rem, md 2.25rem) = title; a description `p` (hidden below lg) `max-width:20rem; font-size:.875rem; color:rgba(17,17,17,.55)`; a trailing badge — hover-spring **triggered by the row** (`translateX 0→5px`, `{300,18}`) `size:2.5rem; display:grid; place-items:center; border-radius:9999px; background:#0a0a0a; color:#fff` (sm `size:3rem`) with ArrowUpRight.
+   262→   262→   262→  - **01 Software Development** — "Scalable web & mobile products built to last."
+   263→   263→   263→  - **02 Product Design** — "Interfaces that feel effortless and look sharp."
+   264→   264→   264→  - **03 Quality Assurance** — "Rigorous testing for flawless, confident releases."
+   265→   265→   265→  - **04 Consulting** — "Strategy and direction for ambitious teams."
+   266→   266→   266→
+   267→   267→   267→---
+   268→   268→   268→
+   269→   269→   269→### 7) Stats (black panel, scroll count-up)
+   270→   270→   270→
+   271→   271→   271→`section` `background:#fff`. `.shell` `padding:0 1.25rem 5rem` (sm px 2rem; lg pb 7rem). Inside, a reveal panel (`translateY(40px) scale(.99→1)`, `{180,26}`): `border-radius:2rem; background:#0a0a0a; padding:3rem 1.5rem; color:#fff` (sm `padding:4rem 2rem`, md `padding-inline:4rem`).
+   272→   272→   272→
+   273→   273→   273→- **Eyebrow** tone `light` (`color:rgba(255,255,255,.7)`, dot `rgba(255,255,255,.6)`) **"By the numbers"**.
+   274→   274→   274→- **H2** (line reveal, easeOutCubic 900ms, delay 120ms, overflow): `margin-top:1rem; max-width:20ch; font-size:1.875rem; font-weight:500; letter-spacing:-.01em` (md 2.25rem) → **"Proof in the work, not the words."**
+   275→   275→   275→- **Grid** `margin-top:3.5rem; display:grid; grid-template-columns:repeat(2,1fr); column-gap:2rem; row-gap:3rem` (lg 4 cols). Each stat is a reveal `li` (`translateY(20px)`, `{200,24}`, delay `index*90ms`): a `font-size:3rem; font-weight:600; letter-spacing:-.02em` number (sm 3.75rem, md 4.5rem) followed by `<suffix>`, then `margin-top:.75rem; font-size:.875rem; color:rgba(255,255,255,.55)` label.
+   276→   276→   276→  - **Count-up:** drive each number with a scroll-progress trigger from **`start:"top bottom"` → `end:"center center"`** (progress 0 when the element's top hits viewport bottom, 1 when its center hits viewport center); display `round(progress * value)`. Throttle ~30ms.
+   277→   277→   277→  - Stats: **150+** "Projects delivered", **98%** "Client retention", **12** "Years of craft" (no suffix), **40+** "Team members".
+   278→   278→   278→
+   279→   279→   279→---
+   280→   280→   280→
+   281→   281→   281→### 8) Footer (black, CTA + columns + watermark)
+   282→   282→   282→
+   283→   283→   283→`footer` `position:relative; overflow:hidden; border-radius:2rem 2rem 0 0; background:#0a0a0a; color:#fff`. Inner `.shell` `position:relative; z-index:10; padding:5rem 1.25rem 2.5rem` (sm px 2rem; lg pt 6rem).
+   284→   284→   284→
+   285→   285→   285→- **CTA row** `display:flex; flex-direction:column; gap:2rem; border-bottom:1px solid rgba(255,255,255,.1); padding-bottom:4rem` (lg: `flex-direction:row; align-items:flex-end; justify-content:space-between`):
+   286→   286→   286→  - **H2** (line reveal, `lineStagger 100ms`, easeOutCubic 900ms, overflow): `max-width:16ch; font-size:2.25rem; font-weight:600; letter-spacing:-.02em` (sm 3rem, md 3.75rem) → **"Have a project in mind? Let's get to work."**
+   287→   287→   287→  - Pill button **"Start a project"** (variant `light`, withArrow, arrow `up-right` → opens request modal).
+   288→   288→   288→- **Columns** `display:grid; grid-template-columns:1fr; gap:3rem; padding-block:4rem` (md 2 cols, lg 4 cols):
+   289→   289→   289→  - Brand col: `[LogoMark 1.25rem] Lumora` (`font-size:1.125rem; font-weight:600`) over `max-width:20rem; font-size:.875rem; color:rgba(255,255,255,.55)` tagline **"An independent studio crafting brands, products, and the systems that connect them."**
+   290→   290→   290→  - **Company:** About (#about), Careers (#careers), Partners (#partners), Contact (#contact).
+   291→   291→   291→  - **Services:** Development (#development), Design (#design), Quality Assurance (#qa), Consulting (#consulting).
+   292→   292→   292→  - **Social:** X / Twitter, Behance, Dribbble, LinkedIn.
+   293→   293→   293→  - Column titles: `font-size:.75rem; text-transform:uppercase; letter-spacing:.025em; color:rgba(255,255,255,.4)`. Links: `font-size:.875rem`, each an **AnimatedLink** = hover-spring span (`translateX 0→4px, opacity .65→1`, `{320,22}`).
+   294→   294→   294→- **Legal bar** `display:flex; flex-direction:column; align-items:center; justify-content:space-between; gap:1rem; border-top:1px solid rgba(255,255,255,.1); padding-top:2rem; font-size:.75rem; color:rgba(255,255,255,.45)` (sm row): left **"© 2025 Lumora Studio. All rights reserved."**; right a `gap:1.5rem` row of AnimatedLinks (`translateX 0→3px, opacity .7→1`) **Privacy** (#privacy), **Terms** (#terms).
+   295→   295→   295→- **Watermark** `position:absolute; inset-inline:0; bottom:-1.5rem; z-index:0; text-align:center; pointer-events:none; user-select:none; font-weight:700; line-height:1; font-size:13rem; color:rgba(255,255,255,.05)` → **LUMORA**.
+   296→   296→   296→
+   297→   297→   297→---
+   298→   298→   298→
+   299→   299→   299→### 9) NavMenu (full-screen overlay)
+   300→   300→   300→
+   301→   301→   301→Opened by the header Menu button (and not present until opened). `position:fixed; inset:0; z-index:115; display:flex; flex-direction:column; background:#0a0a0a; color:#fff`. Open/close = fade `opacity 0↔1`, `{280,32}`. On open: `stopScroll()`, listen for `Escape` to close; on close: `startScroll()`.
+   302→   302→   302→
+   303→   303→   303→- **Top bar** `.shell` `display:flex; align-items:center; justify-content:space-between; padding:1.25rem` (sm `1.5rem 2rem`): left `[LogoMark 1.25rem color:#cf8047] Lumora` (`font-size:1.125rem; font-weight:600`); right a **Close** button `display:inline-flex; gap:.5rem; border:1px solid rgba(255,255,255,.15); border-radius:.875rem; padding:.5rem 1rem; font-size:.75rem; font-weight:500; text-transform:uppercase; letter-spacing:.05em; color:rgba(255,255,255,.7); hover border:rgba(255,255,255,.4) color:#fff` → `[X .875rem] Close`.
+   304→   304→   304→- **Nav** `.shell` `flex:1; display:flex; flex-direction:column; justify-content:center`. `ul gap:.25rem`. Each item a full-width button (`display:flex; gap:1rem; padding-block:.5rem; text-align:left; font-size:2.25rem; font-weight:600; letter-spacing:-.02em`, sm 3.75rem) that **staggers in** on open: `transition:all .5s ease-out; transition-delay:<index*45 + 80>ms`; entered state = `translateY(0) opacity 1`, initial = `translateY(1rem) opacity 0`. Each contains a small index `0<n>` (`font-size:1rem; font-weight:400; color:rgba(255,255,255,.3)`, group-hover → `color:#cf8047`) and the label (`color:rgba(255,255,255,.7)`, group-hover → `#fff`, `transition .3s`). Items: **Home, Work, Services, Studio, Careers, Contact** (same routing as header; Contact opens the request modal; clicking any item closes the menu first).
+   305→   305→   305→- **Bottom bar** `.shell` `display:flex; flex-direction:column; gap:.75rem; border-top:1px solid rgba(255,255,255,.1); padding:1.5rem 1.25rem; font-size:.75rem; text-transform:uppercase; letter-spacing:.025em; color:rgba(255,255,255,.45)` (sm row, justify-between, px 2rem): left **"Local time — <live time>"** (fallback just "Local time"); right a button **"Start a project →"** (`color:rgba(255,255,255,.7); hover underline + #fff`) → closes menu + opens request modal.
+   306→   306→   306→
+   307→   307→   307→---
+   308→   308→   308→
+   309→   309→   309→### 10) RequestModal (stubbed submit)
+   310→   310→   310→
+   311→   311→   311→Opened by any "Contact / Let's Talk / Start a project / Send request" CTA. Backdrop: `position:fixed; inset:0; z-index:110; display:flex; align-items:flex-end; justify-content:center; padding:1rem; background:rgba(17,17,17,.3); backdrop-filter:blur(16px)` (sm `align-items:center`), `role=dialog aria-modal=true`. Click the backdrop to close; `Escape` closes; on open `stopScroll()`, on close `startScroll()`. Enter/exit: panel `opacity 0↔1` + `translateY(28px → 0 → 18px)`, `{260,30}`.
+   312→   312→   312→
+   313→   313→   313→Panel: `position:relative; width:100%; max-width:32rem; overflow:hidden; border-radius:2rem; background:#fff; padding:1.5rem; box-shadow:2xl; ring 1px #e6e5e2` (sm padding 2rem). `stopPropagation` on panel click. Top-right Close button `position:absolute; right:1rem; top:1rem; size:2.25rem; display:grid; place-items:center; border-radius:9999px; background:#f1f0ee; color:rgba(17,17,17,.6); hover bg:#e3e2df color:#111` with X icon.
+   314→   314→   314→
+   315→   315→   315→**Default (form) state:**
+   316→   316→   316→- Heading block `margin-bottom:1.5rem; gap:.375rem`: a `inline-flex; gap:.5rem; font-size:.875rem; font-weight:500; color:rgba(17,17,17,.6)` row with a `.375rem` accent dot (`background:#b15f2c`) + **"Start a project"**; then `h2 font-size:1.5rem; font-weight:600; letter-spacing:-.01em` (sm 1.875rem) → **"Tell us what you're building."**
+   317→   317→   317→- Form `display:flex; flex-direction:column; gap:1rem`. Three fields, each a `label` with a `font-size:.75rem; font-weight:500; uppercase; letter-spacing:.025em; color:rgba(17,17,17,.5)` caption above the control. Controls: `width:100%; border:1px solid #e6e5e2; background:rgba(241,240,238,.5); border-radius:.875rem; padding:.75rem 1rem; font-size:.875rem; outline:none; transition; focus → border:rgba(17,17,17,.3) background:#fff`.
+   318→   318→   318→  - **Name** (text, required, placeholder "Your name")
+   319→   319→   319→  - **Email** (email, required, placeholder "you@company.com")
+   320→   320→   320→  - **Project** (textarea, 4 rows, required, `resize:none`, placeholder "A few words about your project, timeline, and budget.")
+   321→   321→   321→- Bottom row `margin-top:.5rem; display:flex; align-items:center; justify-content:space-between; gap:1rem`: a `font-size:.75rem; color:rgba(17,17,17,.45)` note **"We reply within one business day."** and a pill button **"Send request"** (variant `dark`, withArrow, arrow `up-right`, `type=submit`; while submitting label = "Sending…").
+   322→   322→   322→- **Submit is a no-op/stub:** prevent default, briefly show "Sending…", then switch to the **success** state (no network call).
+   323→   323→   323→
+   324→   324→   324→**Success state** (centered, `padding-block:2rem; gap:1rem`): a `size:3.5rem; display:grid; place-items:center; border-radius:9999px; background:#0a0a0a; color:#cf8047; font-size:1.5rem` LogoMark badge; `h2 font-size:1.5rem; font-weight:600` **"Request received"**; `max-width:32ch; font-size:.875rem; color:rgba(17,17,17,.6)` **"Thanks for reaching out — we'll get back to you within one business day."**; a pill button **"Close"** (variant `dark`) that closes the modal. Reset the form ~300ms after the modal closes.
+   325→   325→   325→
+   326→   326→   326→---
+   327→   327→   327→
+   328→   328→   328→## Shared component recipes
+   329→   329→   329→
+   330→   330→   330→**PillButton** — `inline-block`, wraps a hover-spring scale (`scale 1→1.04`, `{320,18}`, triggered by the root). Inner pill = `inline-flex; align-items:center; gap:.75rem; border-radius:9999px; font-size:.875rem; font-weight:500`. Variants: `dark` = `background:#0a0a0a; color:#fff`; `light` = `background:#f1f0ee; color:#111`; `outline` = `border:1px solid #e6e5e2; background:transparent; color:#111`. Padding: with arrow = `.375rem .375rem .375rem 1.5rem` (`py-1.5 pl-6 pr-1.5`); without arrow = `.875rem 1.75rem` (`py-3.5 px-7`). With arrow: append a `size:2.25rem; display:grid; place-items:center; border-radius:9999px; font-size:1rem` badge (dark variant badge = `background:#fff; color:#0a0a0a`; other variants = `background:#0a0a0a; color:#fff`) whose icon hover-springs (triggered by the button root): `right` arrow shifts `translate(3px,0)`, `up-right` arrow shifts `translate(2px,-2px)`, `{320,18}`. Icon = ArrowRight or ArrowUpRight per `arrow`.
+   331→   331→   331→
+   332→   332→   332→**Eyebrow** — `inline-flex; align-items:center; gap:.5rem; font-size:.875rem; font-weight:500`. Leading `.375rem` round dot. `dark` tone: text `rgba(17,17,17,.7)`, dot `rgba(17,17,17,.5)`. `light` tone: text `rgba(255,255,255,.7)`, dot `rgba(255,255,255,.6)`.
+   333→   333→   333→
+   334→   334→   334→**TagChip** — `inline-flex; border:1px solid; border-radius:9999px; padding:.5rem 1rem; font-size:.875rem`. `light` tone (on dark cards) = `border:rgba(255,255,255,.25); color:#fff`.
+   335→   335→   335→
+   336→   336→   336→**AnimatedLink** — `inline-flex` link wrapping a hover-spring span (default `translateX 0→4px, opacity .65→1`, `{320,22}`; footer legal links override to `translateX 0→3px, opacity .7→1`).
+   337→   337→   337→
+   338→   338→   338→**Hover behavior note** — all hover springs are disabled on touch/mobile (no pointer:hover). On desktop they spring to the `to` state on `mouseenter` and back to `from` on `mouseleave` (a few are triggered by a parent element rather than self — noted inline above).
+   339→   339→   339→
+   340→   340→   340→---
+   341→   341→   341→
+   342→   342→   342→## Assets
+   343→   343→   343→
+   344→   344→   344→`ASSET_BASE_URL = https://api.getlayers.ai/storage/v1/object/public/public/assets/lumora-e8b711fc68`
+   345→   345→   345→
+   346→   346→   346→Load these from the public bucket (NOT relative paths):
+   347→   347→   347→
+   348→   348→   348→| Original path | Full URL | Role in hero |
+   349→   349→   349→|---|---|---|
+   350→   350→   350→| `/assets/hero/before.jpg` | `https://api.getlayers.ai/storage/v1/object/public/public/assets/lumora-e8b711fc68/hero/before.jpg` | painted on cursor trail (`afterSrc`) |
+   351→   351→   351→| `/assets/hero/after.jpg` | `https://api.getlayers.ai/storage/v1/object/public/public/assets/lumora-e8b711fc68/hero/after.jpg` | always-shown base image (`beforeSrc`) |
+   352→   352→   352→
+   353→   353→   353→**Mapping note (preserve exactly):** in the LiquidReveal, `beforeSrc` (the always-visible base / LCP image) = `.../hero/after.jpg`, and `afterSrc` (the brush-revealed image) = `.../hero/before.jpg`. The file named `after.jpg` shows by default; the file named `before.jpg` is revealed under the cursor. Do not swap which file sits on which layer.
+   354→   354→   354→
+   355→   355→   355→---
+   356→   356→   356→
+   357→   357→   357→## Fixed parameters (bake these in)
+   358→   358→   358→
+   359→   359→   359→- **Colors:** `#ffffff #111111 #0a0a0a #8d8d8d #b6b6b6 #e6e5e2 #f1f0ee #e3e2df #b15f2c #cf8047 #97501f #ecebe9 #c9c9c9`. theme-color `#0a0a0a`.
+   360→   360→   360→- **Font:** Google **Onest**, weights 400/500/600/700. Fallback `sans-serif`.
+   361→   361→   361→- **Radii:** pill `9999px`, card `2rem`, card-sm `1.25rem`, control `.875rem`. Watermark font-size `13rem`. Shell max-width `88rem`.
+   362→   362→   362→- **Breakpoints:** sm `640px`, md `768px`, lg `1024px`; adaptive-grid base widths `1920/1440/1024/360`, scale-up base `1920`, coef `0.6666`, FONT_BASE `16`.
+   363→   363→   363→- **Loader:** `FILL_MS = 1300ms`, easeInOutCubic count, counter zero-padded to 3 digits, exit slide `translateY 0→-100%` `{220,30}`, content fade `{260,26}`, progress track `1px`, fill `#cf8047`.
+   364→   364→   364→- **LiquidReveal:** `brushRadius 143`, `decay 0.016`, dpr `min(dpr,2)`, fadeFrames `120`, idle fade ramp `+idle*0.004` capped `0.5`, brush gradient stops `1 / 0.82 / 0` at `0 / 0.55 / 1`, step `max(radius*0.3,1)`, max interp points `60`.
+   365→   365→   365→- **Reveal easings:** lines `easeOutCubic`≈`cubic-bezier(.215,.61,.355,1)` 900ms; words `easeOutQuart`≈`cubic-bezier(.165,.84,.44,1)` 700ms (`wordStagger 35`); hero line `lineStagger 120`, footer CTA `lineStagger 100`.
+   366→   366→   366→- **Entrance delays (ms after `ready`):** header 150, hero eyebrow 200, hero H1 250, hero card 400, partners 550, rating 650, CTAs 750, status bar 900, watermark 300. CreateBand `index*120`, Portfolio cards `index*90`, Services rows `index*80`, Stats `index*90`.
+   367→   367→   367→- **Spring configs (tension/friction):** header `210/26`; hovers (logo/menu/badges/pills) `320/18`; nav-item & link lifts `320/22`; social icon `320/16`; partner `320/20`; create tile `300/18`; service row fill `240/26`, service arrow `300/18`; portfolio card `260/22` + badge `280/18`; portfolio reveal `180/26`; create/partners/heroCard/stats-item reveal `200/24`; stats panel `180/26`; hero card carousel `300/28`; nav overlay fade `280/32`; modal `260/30`.
+   368→   368→   368→- **Stats count-up trigger:** `start "top bottom"`, `end "center center"`, value = `round(progress*target)`, throttle ~30ms.
+   369→   369→   369→- **Clock:** updates every 1s; time `H:MMam/pm` (no leading hour zero, minutes padded), date `D Month, YYYY`; fallback `9:41am` / `12 March, 2025`.
+   370→   370→   370→- **Copy / labels (verbatim):** brand "Lumora"; loader tagline "Bold ideas, shipped with quiet precision."; status bar "Local time" / time / date; nav Home/Work/Services/Studio/Careers/Contact; hero eyebrow "Independent Studio", watermark "LUMORA", heading "Bold ideas," / "shipped with" / "quiet precision", rating "200+ brands shipped", CTAs "Let's Talk" / "View Work", card items + partners + hero footer ("Working since 2014" / "Remote-first, worldwide" / "Scroll to explore") as listed; About all copy as listed; CreateBand We/Build/→/Better; Portfolio "Portfolio" / "Selected Work" + 4 items; Services "Services" / "What we do best" + 4 rows; Stats "By the numbers" / "Proof in the work, not the words." + 4 stats; Footer CTA "Have a project in mind? Let's get to work." + "Start a project", tagline, 3 link columns, legal "© 2025 Lumora Studio. All rights reserved." + Privacy/Terms; modal "Start a project" / "Tell us what you're building." / fields / "We reply within one business day." / "Send request" / success "Request received" / "Thanks for reaching out — we'll get back to you within one business day."

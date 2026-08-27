@@ -1,0 +1,23 @@
+<svg width="1600" height="900" viewBox="0 0 1600 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="wash" x1="0" y1="0" x2="1600" y2="900" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#E9FFFB"/>
+      <stop offset=".5" stop-color="#F8FFFE"/>
+      <stop offset="1" stop-color="#EFF8FF"/>
+    </linearGradient>
+    <linearGradient id="line" x1="140" y1="110" x2="1490" y2="760" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#2DD4BF" stop-opacity=".28"/>
+      <stop offset="1" stop-color="#3B82F6" stop-opacity=".08"/>
+    </linearGradient>
+    <filter id="blur"><feGaussianBlur stdDeviation="32"/></filter>
+  </defs>
+  <rect width="1600" height="900" fill="url(#wash)"/>
+  <g filter="url(#blur)" opacity=".35"><circle cx="1320" cy="155" r="180" fill="#62E6D6"/><circle cx="220" cy="760" r="180" fill="#BFDBFE"/></g>
+  <g stroke="url(#line)" stroke-width="1.5">
+    <path d="M-40 180L190 80L390 220L610 120L805 300L1030 185L1260 335L1600 140"/>
+    <path d="M-30 570L180 440L420 555L600 415L835 570L1070 420L1310 535L1640 410"/>
+    <path d="M110 900L265 685L510 760L710 620L930 800L1140 650L1390 740L1530 590"/>
+    <path d="M190 80L180 440L265 685M390 220L420 555L510 760M610 120L600 415L710 620M805 300L835 570L930 800M1030 185L1070 420L1140 650M1260 335L1310 535L1390 740"/>
+  </g>
+  <g fill="#14B8A6" opacity=".32"><circle cx="190" cy="80" r="6"/><circle cx="390" cy="220" r="5"/><circle cx="610" cy="120" r="7"/><circle cx="805" cy="300" r="5"/><circle cx="1030" cy="185" r="7"/><circle cx="1260" cy="335" r="6"/><circle cx="180" cy="440" r="6"/><circle cx="600" cy="415" r="5"/><circle cx="1070" cy="420" r="6"/><circle cx="1310" cy="535" r="7"/></g>
+</svg>

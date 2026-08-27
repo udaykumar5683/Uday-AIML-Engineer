@@ -21,7 +21,7 @@
   --card-dark-hover: #1a1a1a;
   --border-light: #e5e5e0;
   --border-dark: rgba(255, 255, 255, 0.08);
-  --font: var(--font-space-grotesk), 'Space Grotesk', system-ui, sans-serif;
+  --font: 'Space Grotesk', system-ui, sans-serif;
   --max-w: 82rem;
   --header-h: 4.5rem;
 }

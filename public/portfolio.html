@@ -707,22 +707,24 @@ img{display:block;max-width:100%}
     <div id="modalFormView">
       <h2 class="modal-title">Get in Touch</h2>
       <p class="modal-subtitle">Have a project in mind? Let's talk about it.</p>
-      <form id="contactForm" novalidate>
+      <form id="contactForm" action="https://formspree.io/f/xbgjlzop" method="POST">
         <div class="form-group">
           <label class="form-label" for="contactName">Name</label>
-          <input class="form-input" type="text" id="contactName" placeholder="Your name" required>
+          <input class="form-input" type="text" id="contactName" name="name" placeholder="Your name" required>
         </div>
         <div class="form-group">
           <label class="form-label" for="contactEmail">Email</label>
-          <input class="form-input" type="email" id="contactEmail" placeholder="you@example.com" required>
+          <input class="form-input" type="email" id="contactEmail" name="email" placeholder="you@example.com" required>
         </div>
         <div class="form-group">
           <label class="form-label" for="contactProject">Project Details</label>
-          <textarea class="form-textarea" id="contactProject" placeholder="Tell me about your project..." required></textarea>
+          <textarea class="form-textarea" id="contactProject" name="message" placeholder="Tell me about your project..." required></textarea>
         </div>
+        <input type="hidden" name="_subject" value="New portfolio message">
         <button type="submit" class="btn btn-dark form-submit">Send Message
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
         </button>
+        <p id="contactFormError" class="modal-reply-note hidden" role="alert">Sorry, your message could not be sent. Please try again or email me directly.</p>
       </form>
       <p class="modal-reply-note">We reply within one business day.</p>
     </div>
@@ -1346,10 +1348,33 @@ document.addEventListener('keydown', (e) => {
 });
 
 if (contactForm) {
-  contactForm.addEventListener('submit', (e) => {
+  contactForm.addEventListener('submit', async (e) => {
     e.preventDefault();
-    modalFormView.classList.add('hidden');
-    modalSuccessView.classList.remove('hidden');
+    const submitButton = contactForm.querySelector('button[type="submit"]');
+    const formError = document.getElementById('contactFormError');
+    submitButton.disabled = true;
+    submitButton.setAttribute('aria-busy', 'true');
+    submitButton.firstChild.textContent = 'Sending... ';
+    formError.classList.add('hidden');
+
+    try {
+      const response = await fetch(contactForm.action, {
+        method: 'POST',
+        body: new FormData(contactForm),
+        headers: { Accept: 'application/json' },
+      });
+
+      if (!response.ok) throw new Error('Form submission failed');
+      contactForm.reset();
+      modalFormView.classList.add('hidden');
+      modalSuccessView.classList.remove('hidden');
+    } catch (error) {
+      formError.classList.remove('hidden');
+    } finally {
+      submitButton.disabled = false;
+      submitButton.removeAttribute('aria-busy');
+      submitButton.firstChild.textContent = 'Send Message\n          ';
+    }
   });
 }
 
